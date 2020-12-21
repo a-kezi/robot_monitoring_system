@@ -1,0 +1,281 @@
+<style>
+    .hwstatus-component-title{
+        display: flex;
+        top:0;
+        width:100%;
+        height:44px;
+        background-color: var(--grey-0);
+        border-bottom:solid var(--grey-4) 1px;
+        padding-left: var(--spacing-m);
+        
+    }
+    .hwstatus-component-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top:auto;
+        margin-bottom: auto;
+
+    }
+    .hwstatus-open-btn-case{
+        width:42px;
+        height:100%;
+        border-left: solid var(--grey-3) 1px;
+        display: flex;
+    }
+    .hwstatus-open-btn-case-clicked{
+        background-color: var(--grey-6);
+        border-left: solid var(--grey-3) 1px;
+    }
+    .hwstatus-open-btn-case>img{
+        width:24px;
+        height:24px;
+        margin:auto;
+        pointer-events: none;
+    }
+    .hwstatus-btn-upsidedown{
+        transform: rotate(180deg);
+    }
+    .hwstatus-component-body-custom{
+        background-color: var(--grey-0);
+    }
+    .hwstatus-component-body-custom-close{
+        height:0;
+    }
+    .hwstatus-component-body-custom-open{
+        height:20vh;
+    }
+
+
+
+
+
+    .hwstatus-box{
+        overflow-y:auto;
+        height:100%;
+        width:100%;
+        border-right: solid 1px var(--grey-3);
+        padding-left: var(--spacing-m);
+        /* padding-right: var(--spacing-m); */
+    }
+    .hwstatus-title{
+        height:48px;
+        border-bottom: solid 1px var(--grey-3);
+        display: flex;
+    }
+    .hwstatus-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .hwstatus-state-num{
+        height:36px;
+        display: flex;
+        margin-left:auto;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .hwstatus-state-num-wrapper{
+        margin-top:auto;
+        margin-bottom:auto;
+        height:20px;
+        width:100%;
+        display: flex;
+    }
+    .hwstatus-error{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-error>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: var(--ui-red);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-error>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    .hwstatus-normal{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-normal>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: var(--grey-6);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-normal>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    .hwstatus-disconnected{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-disconnected>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        border: solid 1px var(--grey-5);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-disconnected>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    
+
+    .hwstatus-devices{
+        padding-top: 8px;
+        height:100%;
+        width:100%;
+        overflow-y: auto;
+    }
+    .hwstatus-devices-case{
+        width:100%;
+        height:32px;
+        display: flex;
+    }
+    .hwstatus-devices-state{
+        display: flex;
+        width:28px;
+        height:100%;
+    }
+    .device-status-circle{
+        margin:auto;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+    }
+    .status-circle-error{
+        background-color: var(--ui-red);
+    }
+    .status-circle-normal{
+        background-color: var(--grey-6);
+    }
+    .status-circle-disconnected{
+        border: solid 1px var(--grey-5);
+    }
+
+
+    .hwstatus-devices-name{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        display: flex;
+    }
+    .hwstatus-devices-name>span{
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+
+
+
+    
+    
+</style>
+
+<div class="content-wrapper">
+    <div class="hwstatus-component-title">
+        <span >H/W Status</span>
+        <div class="hwstatus-state-num">
+            <div class="hwstatus-state-num-wrapper">
+                <div class="hwstatus-error ">
+                    <div class="status-circle"></div>
+                    <span class="info-txt-value" data-ng-bind="getDeviceStateNum('error')"></span>
+                </div>
+                <div class="hwstatus-normal ">
+                    <div class="status-circle"></div>
+                    <span class="info-txt-value" data-ng-bind="getDeviceStateNum('normal')"></span>
+                </div>
+                <div class="hwstatus-disconnected ">
+                    <div class="status-circle"></div>
+                    <span class="info-txt-value" data-ng-bind="getDeviceStateNum('disconnected')"></span>
+                </div>
+            </div>
+        </div>
+        <div class="hwstatus-open-btn-case" ng-click="onOpenBtn($event)">
+            <img ng-if="isOpen==false" src="/static/imgs/icons/chevron-down.svg" alt="">
+            <img ng-if="isOpen==true" class="hwstatus-btn-upsidedown" src="/static/imgs/icons/chevron-down.svg" alt="">
+        </div>
+    </div>
+    <div class="hwstatus-component-body-custom hwstatus-component-body-custom-close">
+        <div class="robot-status-wrapper">
+            <div class="hwstatus-box">
+                
+                <div class="hwstatus-devices ">
+                    <!-- 반복구간 -->
+                    <div class="hwstatus-devices-case" ng-repeat="item in $root.dataShare.crt_robot_device">
+                        <div class="hwstatus-devices-state " >
+                            <div class="device-status-circle status-circle-error" ng-if="item.state=='error'"></div>
+                            <div class="device-status-circle status-circle-normal" ng-if="item.state=='normal'"></div>
+                            <div class="device-status-circle status-circle-disconnected" ng-if="item.state=='disconnected'"></div>
+                        </div>
+                        <div class="hwstatus-devices-name">
+                            <span class="info-txt-value" data-ng-bind="item.name"></span>
+                        </div>
+                    </div>
+
+                    <!-- 반복구간 end-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<style>
+    .map-obj-infobox{
+        position: relative;
+        pointer-events:none;
+        /* border:solid greenyellow 3px; */
+        z-index: 5;
+    }
+
+    .tail-bubble{
+        position:absolute;
+        clear:both;
+        pointer-events:initial;
+        /* float:left;  */
+        /* border:solid yellow 3px; */
+        transform: translate(-50%,-100%);
+    }
+    .tail-bubble .label{
+        color:green;
+        background-color: rgba(255, 255, 255, 0.6);
+        border-radius:5px;
+        padding:10px;
+    }
+    .tail-bubble .tail{
+        left:50%;
+        margin-left:-18px;
+        border-right :18px solid transparent;
+        border-top:18px solid rgba(255, 255, 255, 0.6);
+        border-left : 18px solid transparent;
+        position:absolute;
+        bottom:-2px;
+        width:0; height:0;
+    }
+
+    .rec-bubble{
+        pointer-events:initial;
+        position:absolute;
+        clear:both;
+        /* float:left;  */
+        /* border:solid blue 1px; */
+    }
+    .rec-bubble .label{
+        color:#ffffff;
+        /* background-color: green; */
+        background-color: rgba(150, 150, 150, 0.5);
+        
+        padding:10px;
+    }
+    
+
+
+</style>
+
+<!-- infobox objs -->
+<div class="map-obj-infobox" >
+    
+
+    <div class="bubble-pose" ng-repeat="bubble in mvMap.infoBox" ng-style="bubble.boxPosition" ng-click="onclick($index)">
+        <div class="tail-bubble" >
+            <p class="label">
+                <span data-ng-bind="bubble.content"></span>
+                <br>
+                <span data-ng-bind="bubble.content"></span>
+            </p>
+            <div class="tail"></div>
+        </div>
+    </div>
+
+
+</div>
+
+    

@@ -1,0 +1,18 @@
+#nats-screen{
+    /* width:300px; */
+    height: 600px;
+    display: flex;
+}
+.monitor-screen{
+    width:300px;
+    height:300px;
+}
+#ros-monitor{
+    width:100%;
+    height:100%;
+}
+#http-monitor{
+    width:100%;
+    height:100%;
+}
+

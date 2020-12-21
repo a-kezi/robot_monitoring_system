@@ -1,0 +1,52 @@
+extends ../header.pug
+block subnav
+    //- stylesheet        
+    link(rel="stylesheet", href="/static/css/thermalImgInspec.css")
+
+    div(id="subnavReport" class="subnav" ng-controller="suvnavCtrl")
+        div(class="subnav-container")
+            div(id="view-btn")
+                div(id="view-btn-case")
+                    div(
+                        id="view-btn-map" 
+                        ng-click="onClickMapView()"
+                        ng-class="{ 'view-btn-selected': isMapViewOn, 'view-btn-origin': !isMapViewOn}") 
+                        span Map View
+                    div(
+                        id="view-btn-camera" 
+                        ng-click="onClickCameraView()"
+                        ng-class="{ 'view-btn-selected': isCameraViewOn, 'view-btn-origin': !isCameraViewOn}") 
+                        span Camera View
+            div(class="subnav-title")
+                span() 열화상 리포트
+            div(class="vertical-divider")
+
+            div(class="zone-selector-container" )
+                ul(class="nav navbar-nav")
+                    li(class="dropdown")
+                        div(
+                            href="#" 
+                            class="zone-select-box" 
+                            data-toggle="dropdown" 
+                            role="button" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                            )
+                            span(class="" data-ng-bind="getCrtZoneName($root.dataShare.crt_zone)")
+                            div(class="zone-select-btn ")
+                                span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(
+                                ng-repeat="item in $root.dataShare.zonelist" 
+                                ng-click="chooseZone($index)")
+                                a(href="#")
+                                    span(data-ng-bind="item.name")
+
+block content
+    div(class="container-fluid main-container-fluid")
+        div(class="raw")
+            div(id="thermalreport" class=" col-lg-12 content-container")
+                thermal-report
+
+block scriptadding
+    script(type="text/javascript", src="/static/js/thermalImgInspec.js")

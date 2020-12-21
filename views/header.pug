@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 로봇 관제 시스템
+
+        //- favicon
+        link(rel="shortcut icon" href="/static/imgs/favicon.ico")
+        //- bootstrap stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/3.4.1/css/bootstrap.css")
+        //- bootstrap font-awesome stylesheet
+        link(rel="stylesheet" href="/static/libs/font.awesome.4.6.0/Content/Content/font-awesome.min.css")
+        //- bootstrap-essentials stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/essentials/css/bootstrap-essentials.css")
+        //- animate stylesheet
+        link(rel="stylesheet" href="/static/libs/animatecss/3.5.1/animate.min.css")
+        //- datepicker stylesheet        
+        link(rel="stylesheet", href="/static/libs/datepicker/daterangepicker.css")
+
+        //- common.css 추가
+        link(rel="stylesheet", type="text/css", href="/static/css/common.css")
+        //- layout stylesheet        
+        link(rel="stylesheet", href="/static/css/header.css")
+
+    body(ng-app="dashboardApp")
+        //- navigation barz
+        input(id="serverIp" type="text" style="display:none" value=SERVER_IP)
+        input(id="serverPort" type="text" style="display:none" value=SERVER_PORT)
+        input(id="natsIp" type="text" style="display:none" value=NATS_IP)
+        input(id="natsPort" type="text" style="display:none" value=NATS_PORT)
+        input(id="natsRelayPort" type="text" style="display:none" value=NATS_RELAY_PORT)
+        input(id="user_displayname" type="text" style="display:none" value=USER_DISPLAYNAME)
+        input(id="user_id" type="text" style="display:none" value=USER_ID)
+        
+        nav(class="navbar navbar-default navbar-fixed-top navbar-slide-nav" ng-controller="navCtrl")
+            //- modal popup
+            div(id="modal-content-case")
+                div(id="modal-content")
+                    //- div(id="modal-content-wrapper")
+                    //-     div(id='modal-content-title') 
+                    //-         span 이미지
+                    //-     div(id='modal-content-data')
+                    //-         img(src='/static/imgs/icons/p.png')
+                    div(id='modal-content-close' ng-click="onPopupClose($event)")
+                        div(id='modal-content-close-btn')
+                            span() 닫기 
+            div(class="container-fluid")
+                //- toggle button
+                div(class="navbar-header")
+                    button(
+                        type="button"
+                        class="navbar-toggle pull-left"
+                        data-toggle="offcanvas" 
+                        href="#navbar" 
+                        aria-expanded="false" 
+                        aria-controls="navbar"
+                        )
+                        span(class="sr-only") Toggle navigation
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+
+                //- nav menu
+                div(id="navbar" class="navbar-slide offcanvas")
+                    ul(class="nav navbar-nav main-nav")
+                        li(class="nav-logo")
+                            a(href=URL_MONITORING_SERVICE)
+                                img(src="/static/imgs/icons/ropti-logo.svg" class="ropti_logo")
+                        li(class="dropdown")
+                            a(
+                                href="#" 
+                                class="dropdown-toggle" 
+                                data-toggle="dropdown" 
+                                role="button" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                                )
+                                span() 모니터링
+                                span(class="caret")
+                            ul(class="dropdown-menu")
+                                li
+                                    a(href=URL_MONITORING_SERVICE) 
+                                        span 서비스 모니터링
+                                        span(class="dropdown-menu-arrow-btn")
+                                            i(class="fa fa-angle-right" aria-hidden="true")
+                                li
+                                    a(href=URL_MONITORING_ROBOT)
+                                        span 로봇 모니터링
+                                        span(class="dropdown-menu-arrow-btn")
+                                            i(class="fa fa-angle-right" aria-hidden="true")
+                        li
+                            a(href=URL_CONTROLLER)
+                                span() 로봇 컨트롤러
+                        li(class="dropdown")
+                            a(
+                                href="#" 
+                                class="dropdown-toggle " 
+                                data-toggle="dropdown" 
+                                role="button" 
+                                aria-haspopup="true" 
+                                aria-expanded="false"
+                                )
+                                span() 리포트
+                                span(class="caret")
+                            ul(class="dropdown-menu")
+                                li
+                                    a(href=URL_REPORT) 
+                                        span 열화상 검사 리포트
+                                        span(class="dropdown-menu-arrow-btn")
+                                            i(class="fa fa-angle-right" aria-hidden="true")
+                                //- li(class="dropdown-header") Service
+                                //- li(ng-repeat="item in $root.dataShare.servicelist" ng-click="clickService($index)")
+                                //-     a(href="{{item.reporturl}}")
+                                //-         span(data-ng-bind="item.display_name")
+                                //-         span(class="dropdown-menu-arrow-btn")
+                                //-             i(class="fa fa-angle-right" aria-hidden="true")
+                                //- li(class="dropdown-header") Robot
+                                //- li
+                                //-     a(href="#")
+                                //-         span Robot Report
+                                //-         span(class="dropdown-menu-arrow-btn")
+                                //-             i(class="fa fa-angle-right" aria-hidden="true")
+                        li
+                            a(href=URL_BACKOFFICE)
+                                span() 컨텐츠 편집
+                        //- li
+                        //-     a(href="http://127.0.0.1:53300/testpg/feed")
+                        //-         span() 테스트 페이지
+                //- nav menu - right static
+                div(class="navbar-right-static nv-right-container")
+                    div.alarm-icon-box
+                        robot-alarm(img="/static/imgs/icons/bell.svg" width="24px")
+                    div(class="vertical-divider-navbar")
+                    div(class="site-selector-container" )
+                        div SITE
+                        ul(class="nav navbar-nav")
+                            li(class="dropdown")
+                                div(
+                                    href="#" 
+                                    class="" 
+                                    data-toggle="dropdown" 
+                                    role="button" 
+                                    aria-haspopup="true" 
+                                    aria-expanded="false"
+                                    )
+                                    span(data-ng-bind="$root.dataShare.crt_site.name" )
+                                    div(class="site-select-btn")
+                                        span(class="caret")
+                                ul(class="dropdown-menu")
+                                    li(
+                                        ng-repeat="item in $root.dataShare.sitelist" 
+                                        ng-click="chooseSite($index)")
+                                        a(href="#")
+                                            span(data-ng-bind="item.name")
+                    div(class="user-icon-box")
+                        a(
+                            href="#" 
+                            class="dropdown-toggle" 
+                            data-toggle="dropdown" 
+                            role="button" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                            )
+                            img(src="/static/imgs/icons/user.svg" width="24px" alt="user")
+                            span(class="caret")
+                        ul(id="user-menu" class="dropdown-menu")
+                            div(class="user-info")
+                                div(class="")
+                                    img(src="/static/imgs/icons/img-thumbnail-profile-default.svg" width="56px" alt="user")
+                                div(class="user-display-name")
+                                    span(data-ng-bind="user_displayname")
+                                div(class="user-id")
+                                    span(data-ng-bind="user_id")
+                            div(class="user-info-bottom-line")
+                            div(class="my-page")
+                                span() 알람 설정
+                                .alarm-switch(ng-click="onAlarmSwitch($event)")
+                                    input(id="someSwitchOptionDefault" name="someSwitchOption001" type="checkbox")
+                                    label(for="someSwitchOptionDefault" class="label-default")
+                            div(class="my-page" ng-click="onAlarmCheckAll($event)")
+                                span() 알람 전부 확인
+                            div(class="my-page logout-btn")
+                                -if(isLogin)
+                                    a(href="/accounts/logout", onclick="return confirm('로그아웃 하시겠습니까?')") 로그아웃
+                                -if(!isLogin)
+                                    a.btn.btn-lg.btn-primary.btn-block(href="/accounts/login") 로그인 페이지로 이동
+        div(id="subnav")
+            block subnav
+        div(id="content")
+            block content
+        block home_content
+
+
+        include ./footer.pug
+        block scriptadding

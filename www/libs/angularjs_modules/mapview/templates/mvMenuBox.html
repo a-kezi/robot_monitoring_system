@@ -1,0 +1,44 @@
+<style>
+    .map-obj-menubox{
+        position: relative;
+        pointer-events:none;
+        /* border:solid greenyellow 3px; */
+        z-index: 5;
+    }
+
+    .rec-bubble{
+        pointer-events:initial;
+        position:absolute;
+        clear:both;
+        /* float:left;  */
+        /* border:solid blue 1px; */
+    }
+    .rec-bubble .label{
+        color:#ffffff;
+        /* background-color: green; */
+        background-color: rgba(150, 150, 150, 0.5);
+        
+        padding:10px;
+    }
+    .rec-bubble .label span:hover{
+        color: lightcoral;
+    }
+    
+
+
+</style>
+
+<!-- menubox objs -->
+<div class="map-obj-menubox" >
+    <div class="bubble-pose" ng-repeat="bubble in mvMap.menuBox" ng-style="bubble.boxPosition">
+            <div class="rec-bubble" >
+                <div class="label">
+                    <div ng-repeat="content in bubble.content">
+                        <span data-ng-bind="content"></span><br>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    
+        

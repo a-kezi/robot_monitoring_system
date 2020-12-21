@@ -1,0 +1,141 @@
+<style>
+    .robot-icon-case{
+        position: absolute;
+        pointer-events:none;
+    }
+    .map-obj-robot{
+        position: absolute;
+        pointer-events:none;
+
+    }
+
+    .mv-robot-icon-body-case{
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.7);
+        position: absolute;
+        transform: translate(-50%,-50%);
+    }
+    .mv-robot-icon-body-normal{
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: solid 2px #5d80ed;
+        background-color: var(--primary-1);
+    }
+    .mv-robot-icon-body-manual{
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: solid 2px #65cb97;
+        background-color: var(--ui-green);
+    }
+    .mv-robot-icon-body-error{
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: solid 2px #ff7474;
+        background-color: var(--ui-red);
+    }
+    .mv-robot-icon-body-disconnected{
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        border: none;
+        background-color: var(--grey-7);
+    }
+
+    .mv-robot-icon-arrow-case{
+        width: 8px;
+        height: 56px;
+        position: absolute;
+        transform: translate(-50%,-50%);
+    }
+    .mv-robot-icon-arrow-case>img{
+        width: 8px;
+        height: 18px;
+        position: absolute;
+        left:0;
+        top:0;
+    }
+    .mv-robot-name-case{
+        transform: translate(-50%,-50%);
+        margin-top: 30px ;
+        width:200px;
+        display: flex;
+    }
+    .mv-robot-name{
+        margin:auto;
+        border-radius: 12px;
+        display: flex;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .mv-robot-name-selected{
+        background-color: rgba(33, 37, 41, 0.85);
+        color: var(--grey-0);
+    }
+    .mv-robot-name-unselected{
+        background-color: none;
+        color: var(--grey-7);
+    }
+    .mv-robot-name>img{
+        width:18px;
+    }
+    .mv-robot-name>span{
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+    
+    
+    
+
+</style>
+<!-- robot objs -->
+<div class="robot-icon-case">
+
+    <div ng-if="robotdata.list.length!=0" 
+        class="map-obj-robot " 
+        ng-repeat="robot in robotdata.list" 
+        ng-style="robot.iconStyle.pose" 
+        mv-repeat>
+        <div class="mv-robot-icon-arrow-case " name="robot.{{robot.robotid}}" ng-style="robot.iconStyle.orientation">
+            <img class="" src="/static/imgs/icons/robot-pin-select-direction.svg" > 
+        </div>
+        <div class="mv-robot-icon-body-case" name="robot.{{robot.robotid}}" ng-style="robot.iconStyle.orientation">
+            <div 
+                ng-class="{ 
+                    'mv-robot-icon-body-normal': robot.finalstate==0,
+                    'mv-robot-icon-body-manual': robot.finalstate==2,
+                    'mv-robot-icon-body-error': robot.finalstate==1,
+                    'mv-robot-icon-body-disconnected': robot.finalstate==3}"
+                ></div>
+        </div>
+        <div 
+            class="mv-robot-name-case"
+            >
+            <div
+            class="mv-robot-name"
+                ng-class="{ 
+                'mv-robot-name-selected': robot.robotid==$root.dataShare.crt_robot.id,
+                'mv-robot-name-unselected': robot.robotid!=$root.dataShare.crt_robot.id}">
+                <img 
+                ng-if="robot.robotid==$root.dataShare.crt_robot.id"
+                src="/static/imgs/icons/check-selected-pin.svg" 
+                alt="">
+                <span class="" data-ng-bind="robot.name" ></span>
+            </div>
+            
+        </div>
+    </div>
+</div>

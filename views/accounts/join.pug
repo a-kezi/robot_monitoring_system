@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 로봇 관제 시스템
+
+
+        //- bootstrap stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/3.4.1/css/bootstrap.min.css")
+        //- bootstrap font-awesome stylesheet
+        link(rel="stylesheet" href="/static/libs/font.awesome.4.6.0/Content/Content/font-awesome.min.css")
+        //- bootstrap-essentials stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/essentials/css/bootstrap-essentials.css")
+        //- animate stylesheet
+        link(rel="stylesheet" href="/static/libs/animatecss/3.5.1/animate.min.css")
+        //- layout stylesheet        
+        link(rel="stylesheet", href="/static/css/header.css")
+
+        
+    body
+        div.row
+            div.col-md-4.col-md-offset-4
+                div.login-panel.panel.panel-default
+                    div.panel-heading
+                        h3.panel-title 회원가입
+                    div.panel-body
+                        form#join_form(role="form", action="", method="post")
+                            fieldset
+                                div.form-group
+                                    input.form-control(placeholder="ID", name="username", type="text", autofocus="", required="")
+                                div.form-group
+                                    input.form-control(placeholder="Password", name="password", type="password", value="", required="")
+                                div.form-group
+                                    input.form-control(placeholder="Password 확인", name="password2", type="password", value="", required="")
+                                div.form-group
+                                    input.form-control(placeholder="이름", name="displayname", type="text", value="", required="")
+                                div.form-group
+                                    input.form-control(placeholder="그룹", name="usergroup", type="text", value="", required="")
+                                input.btn.btn-lg.btn-success.btn-block(type="submit", value="가입하기")
+
+    //- common frameworks
+    //- jquery
+    script(type="text/javascript", src="/static/libs/jquery/jquery_2.1.1.js")
+    //- bootstrap js
+    script(type="text/javascript", src="/static/libs/bootstrap/3.4.1/js/bootstrap.min.js")
+
+    script(type="text/javascript", src="/static/js/join.js")
+
+
+
+
+

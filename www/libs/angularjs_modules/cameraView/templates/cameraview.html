@@ -1,0 +1,409 @@
+<style>
+    .camera-view-body{
+        width: 100%;
+        height: 100%;
+        background-color: var(--grey-0);
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+        padding-bottom: var(--spacing-m);
+        
+    }
+    .camera-view-content{
+        display:flex;
+        height:100%;
+        width: 100%;
+        
+    }
+    .camera-view-left-case{
+        width: 26%;
+        /* border-right: var(--grey-3); */
+    }
+    .camera-view-right-case{
+        width: 74%;
+    }
+    .camera-view-btn-case{
+        height:48px;
+        border-bottom: solid 1px var(--grey-3);
+        display:flex;
+        padding-left:var(--spacing-m);
+        background-color: var(--grey-0);
+    }
+    .camera-view-btn-left{
+        margin-right: var(--spacing-xs);
+    }
+    .camera-view-btn-on{
+        cursor:pointer;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 95px;
+        height: 32px;
+        border-radius: 2px;
+        background-color: var(--primary-1);
+        padding-left: var(--spacing-xs);
+        display:flex;
+    }
+    .camera-view-btn-off{
+        cursor:pointer;
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 95px;
+        height: 32px;
+        border-radius: 2px;
+        background-color: var(--grey-0);
+        border: solid 1px var(--grey-4);
+        padding-left: var(--spacing-xs);
+        display:flex;
+    }
+    .camera-view-btn-on>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .camera-view-btn-off>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .square-icon-case{
+        width:24px;
+        height:24px;
+        display:flex;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .square-icon{
+        margin:auto;
+        
+    }
+    .four-square-icon{
+        margin:auto;
+    }
+    .small-mapview-case{
+        width: 100%;
+        /* border: solid 1px var(--grey-4); */
+        margin-bottom: var(--spacing-m);
+    }
+    .camera-list-case{
+        width: 100%;
+        border: solid 1px var(--grey-4);
+    }
+    .camera-list-title{
+        height:40px;
+        border-bottom: solid 1px var(--grey-3);
+        display:flex;
+        padding-left:var(--spacing-m);
+        background-color: var(--grey-0);
+    }
+    .camera-list-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .camera-list-body{
+        padding-top: var(--spacing-m);
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+        position: relative;
+        overflow-y: auto;
+        background-color: var(--grey-1);
+    }
+    .camera-list-robot-type{
+        height:36px;
+        display:flex;
+
+    }
+    .camera-list-robot-type-txt{
+        margin-left:auto;
+        margin-top:auto;
+        margin-bottom:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-5);
+    }
+    .camera-list-camera{
+        cursor:pointer;
+        border-radius: 2px;
+        height:56px;
+        box-shadow: 0 2px 2px 0 var(--grey-3);
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+        margin-bottom: var(--spacing-xs);
+        display:flex;
+        padding-left:var(--spacing-m);
+    }
+    .camera-list-camera>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .camera-oneview{
+        height:100%;
+        width:100%;
+        position:relative;
+    }
+    
+    .camera-oneview-title{
+        /* background-color: rgba(0, 0, 0, 0.5); */
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        position: absolute;
+        height:40px;
+        width:100%;
+        left:0;
+        top:0;
+        display: flex;
+        padding-left: var(--spacing-m);
+        z-index: 2;
+    }
+    .camera-oneview-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .camera-oneview-video{
+        background-image: url("/static/imgs/icons/background_logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+
+        background-size: cover;
+
+        position: absolute;
+        height:100%;
+        width:100%;
+        left:0;
+        top:0;
+        display: flex;
+    }
+
+    .camera-fourview-container{
+        margin:0px !important;
+        padding: 0px !important;
+        height:100%;
+
+    }
+    .camera-fourview-row{
+        height:50%;
+        margin:0px !important;
+        padding: 0px !important;
+    }
+    .camera-fourview{
+        height:100%;
+        width:100%;
+        position:relative;
+        
+    }
+
+    .camera-fourview-videocase{
+        display:flex;
+        height:100%;
+    }
+    .camera-fourview-video{
+        background-image: url("/static/imgs/icons/background_logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        position: absolute;
+        height:100%;
+        width:100%;
+        left:0;
+        top:0;
+        display: flex;
+    }
+    #videoOne-1{
+        margin: auto;
+        width:100%;
+    }
+    #videoFour-1{
+        margin: auto;
+        width:100%;
+    }
+    #videoFour-2{
+        margin: auto;
+        width:100%;
+    }
+    #videoFour-3{
+        margin: auto;
+        width:100%;
+    }
+    #videoFour-4{
+        margin: auto;
+        width:100%;
+    }
+
+    
+    
+</style>
+
+
+<div class="content-wrapper">
+    <div class="camera-view-wrapper ">
+        <div class="camera-view-content ">
+            <div class="camera-view-left-case">
+                <!-- map -->
+                <div class="small-mapview-case" >
+                    <map-view class="camera-view-static-mv" mode="dynamic" title="false" height="380px" width="100%"></mv-view>
+                </div>
+
+                <!-- camera list -->
+                <div class="camera-list-case">
+                    <div class="camera-list-title">
+                        <span>카메라 리스트</span>
+                    </div>
+                    
+                    <div class="camera-view-btn-case">
+                        <div class="camera-view-btn-left camera-view-btn-on" id="oneview" ng-click="onOneView()">
+                            <div class="square-icon-case">
+                                <div class="square-icon">
+                                    <img ng-if="viewState==4" src="/static/imgs/icons/1-view-gray.svg" alt="">
+                                    <img ng-if="viewState==1" src="/static/imgs/icons/1-view-white.svg" alt="">
+                                </div>
+                            </div>
+                            <span>1 view</span>     
+                        </div>
+                    
+                        <div class="camera-view-btn-off" id="fourview" ng-click="onFourView()">
+                            <div class="square-icon-case">
+                                <div class="four-quare-icon">
+                                    <img ng-if="viewState==1" src="/static/imgs/icons/4-view-gray.svg" alt="">
+                                    <img ng-if="viewState==4" src="/static/imgs/icons/4-view-white.svg" alt="">
+                                </div>
+                            </div>
+                            <span>4 view</span>
+                        </div>
+                    </div>
+                    
+                    <div class="camera-list-body">
+                        
+                        <!-- 반복 부분-->
+                        <div ng-repeat="item in cameraList track by $index" id="camera.{{$index}}" class="camera-list-camera" draggable="true" drag-item>
+                            <span data-ng-bind="item.position"></span>
+                        </div>
+                        <!-- 반복 종료-->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="camera-view-right-case">
+                <!-- camera view -->
+                <div ng-if="viewState==1" id="cameraone_1" class="camera-oneview" droppable="true" drop-item>
+                    <div class="camera-oneview-title">
+                        <span id="cameraOne_name" data-ng-bind="cameraOne_name"></span>
+                    </div>
+                    <div class="camera-oneview-video">
+                        <img class="" id="videoOne-1" src="" alt="">
+                        <!-- <video id="videoOne-1" crossorigin="anonymous" type="video/ogg" aria-hidden="false" autoplay="autoplay" aria-controls="" width="100%" height="100%" controls>
+                        </video> -->
+                    </div>
+                </div>
+
+                <div ng-if="viewState==4" class="camera-fourview ">
+                    
+
+                    <div class="container-fluid camera-fourview-container">
+                        <div class="row camera-fourview-row ">
+                            <div class="col-lg-6 camera-fourview-videocase" id="camerafour_1" droppable="true" drop-item>
+                                <div class="camera-oneview-title">
+                                    <span id="cameraFour_name1" data-ng-bind="cameraFour_name1"></span>
+                                </div>
+                                <div class="camera-fourview-video">
+                                    <img class="" id="videoFour-1" src="" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 camera-fourview-videocase" id="camerafour_2" droppable="true" drop-item>
+                                <div class="camera-oneview-title">
+                                    <span id="cameraFour_name2" data-ng-bind="cameraFour_name2"></span>
+                                </div>
+                                <div class="camera-fourview-video">
+                                    <img class="" id="videoFour-2" src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row camera-fourview-row">
+                            <div class="col-lg-6 camera-fourview-videocase" id="camerafour_3" droppable="true" drop-item>
+                                <div class="camera-oneview-title">
+                                    <span id="cameraFour_name3" data-ng-bind="cameraFour_name3"></span>
+                                </div>
+                                <div class="camera-fourview-video">
+                                    <img class="" id="videoFour-3" src="" alt="">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 camera-fourview-videocase" id="camerafour_4" droppable="true" drop-item>
+                                <div class="camera-oneview-title">
+                                    <span id="cameraFour_name4" data-ng-bind="cameraFour_name4"></span>
+                                </div>
+                                <div class="camera-fourview-video">
+                                    <img class="" id="videoFour-4" src="" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

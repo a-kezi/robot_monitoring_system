@@ -1,0 +1,317 @@
+<style>
+    .component-title{
+        display:flex;
+    }
+    .component-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    
+    .robot-list-wrapper{
+        display:block;
+        height:100%;
+        width:100%;
+        overflow-y: auto;
+    }
+    .add-padding{
+        padding-top:var(--spacing-m);
+        padding-left:var(--spacing-m);
+        padding-right:var(--spacing-m);
+    }
+    .robot-list-case{
+        margin-bottom: var(--spacing-xs);
+        width:100%;
+        height:112px;
+        display: flex;
+
+        border-radius: 4px;
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+    }
+    /* .robot-list-case.state-normal{
+
+    } */
+    .robot-list-case.state-error{
+        border-color:var(--ui-red);
+        background-color: rgba(226, 36, 42, 0.05);
+    }
+    /* .robot-list-case.state-manual{
+
+    } */
+    .robot-list-case.state-disconnected{
+        border: solid 1px var(--grey-2);
+        background-color: var(--grey-1);
+        opacity: 70%;
+    }
+    .robot-list-photo{
+        width:20%;
+        height:100%;
+        padding-right: var(--spacing-m);
+        display: flex;
+    }
+    .robot-list-photo>img{
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        
+    }
+    .robot-list-info{
+        width:56%;
+        height:100%;
+        
+
+    }
+    .robot-list-state{
+        width:24%;
+        height:100%;
+        display: flex;
+        cursor: pointer;
+
+    }
+    .robot-list-robotname{
+        height:50%;
+        display: flex;
+    }
+    .robot-list-robotname>span{
+        margin-top: auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .robot-list-infotxt{
+        height:50%;
+        padding-top: var(--spacing-xs);
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 21px;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .robot-list-infotxt-wrapper{
+        display: flex;
+        height:24px;
+
+    }
+    .robot-list-vertical-divider{
+        width:1px;
+        height:100%;
+        margin-left: var(--spacing-xxs);
+        margin-right: var(--spacing-xxs);
+
+        background-color: var(--grey-4);
+    }
+    .robot-list-battery{
+        display: flex;
+    }
+    .robot-list-battery>span{
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .battery-panel{
+        width:50px;
+        text-align:end;
+
+    }
+    .robot-state-card{
+        width: 72px;
+        height: 32px;
+        border-radius: 16px;
+        display: flex;
+
+        margin: auto;
+    }
+    .robot-state-card>span{
+        margin: auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+    }
+    
+
+    .arrow-btn{
+        align-self: end;
+        margin:auto;
+        display:flex;
+        padding-left: var(--spacing-s);
+        padding-right: var(--spacing-s);
+        font-size: 24px;
+        
+        letter-spacing: normal;
+        color: var(--grey-4);
+    }
+    .robot-list-wrapper-case{
+        height:100px;
+        background-color: var(--grey-0);
+    }
+
+</style>
+
+<div class="content-wrapper">
+    <div class="component-title">
+        <span >로봇 리스트</span>
+    </div>
+    <div class="robot-list-wrapper-case add-padding">
+
+
+
+        <div class="robot-list-wrapper">
+            <!-- 반복 구간 -->
+            <div class="robot-list-case" ng-repeat="robot in $root.dataShare.robotlist">
+                <div class="robot-list-photo">
+                    <img ng-src="{{robot.profile}}" width="64px" alt="">
+                </div>
+                <div class="robot-list-info ">
+                    <div class="robot-list-robotname ">
+                        <span data-ng-bind="robot.name"></span>
+                    </div>
+                    <div class="robot-list-infotxt ">
+                        <div class="robot-list-infotxt-wrapper ">
+                            <!-- <div class="robot-list-type">
+                                <span data-ng-bind="robot.type"></span>
+                            </div>
+                            <div class="robot-list-vertical-divider" ng-if="robot.battery!=undefined"></div> -->
+                            <div class="robot-list-battery" ng-if="robot.battery!=undefined">
+                                <div class="battery-panel">
+                                    <span data-ng-bind="robot.battery"></span>
+                                    <span>%</span>
+                                </div>
+
+
+                                <div class="robot-list-battery-icon remains-100" ng-if="robot.battery>=100">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+                                <div class="robot-list-battery-icon remains-90" ng-if="robot.battery>=90 && robot.battery<100">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+                                <div class="robot-list-battery-icon remains-80" ng-if="robot.battery>=80 && robot.battery<90">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-70" ng-if="robot.battery>=70 && robot.battery<80">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-60" ng-if="robot.battery>=60 && robot.battery<70">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-50" ng-if="robot.battery>=50 && robot.battery<60">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-40" ng-if="robot.battery>=40 && robot.battery<50">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-30" ng-if="robot.battery>=30 && robot.battery<40">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-20" ng-if="robot.battery>=20 && robot.battery<30">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-10" ng-if="robot.battery>=10 && robot.battery<20">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-10" ng-if="robot.battery>0 && robot.battery<10">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                <div class="robot-list-battery-icon remains-0" ng-if="robot.battery<=0">
+                                    <div class="battery-icon-body">
+                                        <div class="battery-icon-remains "></div>
+                                    </div>
+                                    <div class="battery-icon-top"></div>
+                                </div>
+
+                                
+                                
+                                
+                            </div>
+                            
+                            <div 
+                                class="robot-list-vertical-divider" 
+                                ng-if="robot.battery!=undefined && robot.context!=undefined && robot.context!=''"></div>
+                            <div class="robot-list-task" ng-if="robot.context!=undefined">
+                                <span data-ng-bind="robot.context"></span>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="robot-list-state " ng-click="onClickRobot($index, $event)">
+                    <div class="robot-state-card state-error-color" ng-if="robot.finalstate==1">
+                        <span>에러</span>
+                    </div>
+                    <div class="robot-state-card state-normal-color" ng-if="robot.finalstate==0">
+                        <span>동작중</span>
+                    </div>
+                    <div class="robot-state-card state-manual-color" ng-if="robot.finalstate==2">
+                        <span>수동</span>
+                    </div>
+                    <div class="robot-state-card state-disconnected-color" ng-if="robot.finalstate==3">
+                        <span>비접속</span>
+                    </div>
+                    <div class="arrow-btn ">
+                        <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- 반복 구간 end-->
+
+        </div>
+    </div>
+</div>
+
+

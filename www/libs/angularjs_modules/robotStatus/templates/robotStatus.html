@@ -1,0 +1,623 @@
+<style>
+    .component-title{
+        display:flex;
+    }
+    .component-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .custom-background-color{
+        background-color: var(--grey-0);
+    }
+    .robot-status-wrapper{
+        height:100%;
+        width:100%;
+        display: flex;
+    }
+    .status-box{
+        overflow-y:auto;
+        height:100%;
+        width:100%;
+        padding-left:15px;
+        padding-right:15px;
+        border-right: solid 1px var(--grey-3);
+    }
+    .robotinfo{
+        height:50%;
+        width:100%;
+
+    }
+    .drivinginfo{
+        height:50%;
+        width:100%;
+
+    }
+
+    .drivinginfo-title{
+        display: flex;
+        height:30px;
+
+    }
+    .drivinginfo-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .drivinginfo-speed{
+        display: flex;
+        height:35px;
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .drivinginfo-location{
+        height:60px;
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .drivinginfo-location>div{
+        margin-bottom:5px;
+    }
+    .drivinginfo-direction{
+        height:60px;
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .drivinginfo-direction>div{
+        margin-bottom:5px;
+    }
+    .info-txt-title{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .info-txt-value-case{
+        display:flex;
+    }
+    .info-txt-value-case>div{
+        margin-left:auto;
+        margin-top:5px;
+        margin-bottom:4px;
+    }
+    .info-txt-value{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .robotinfo-title{
+        height:128px;
+        display: flex;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .robotinfo-task{
+        display: flex;
+        height:35px;
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .robotinfo-task-txt-case{
+        overflow: hidden; 
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        width:125px;
+        height:100%;
+        padding-top:6px;
+        display: flex;
+    }
+    .robotinfo-battery{
+        display: flex;
+        height:35px;
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .robotinfo-battery-wrapper{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+        display: flex;
+    }
+    .robotinfo-title-profile{
+        width:40%;
+        height:100%;
+        padding-left: 7%;
+        padding-right: 7%;
+        display:flex;
+    }
+    .robotinfo-title-profile>img{
+        height:100%;
+        margin:auto;
+    }
+    .robotinfo-title-name{
+        width:60%;
+        height:100%;
+    }
+    .robotinfo-title-state{
+        height:48px;
+        display: flex;
+    }
+    .robotinfo-title-state-card{
+        width:61px;
+        height:32px;
+        display: flex;
+        border-radius: 4px;
+        margin-right: auto;
+        margin-top: auto;
+    }
+    .robotinfo-title-state-card>span{
+        margin: auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+    }
+    .robotinfo-title-name-txt{
+        height:36px;
+        font-family: SpoqaHanSans;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .robotinfo-title-type-txt{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .robotinfo-battery-battery-panel{
+        margin-right: var(--spacing-xs)
+    }
+    .robotinfo-battery-battery-panel>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-7);
+    }
+
+
+
+
+
+    .hwstatus-box{
+        overflow-y:auto;
+        height:100%;
+        width:50%;
+        border-right: solid 1px var(--grey-3);
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+    }
+    .hwstatus-title{
+        height:48px;
+        border-bottom: solid 1px var(--grey-3);
+        display: flex;
+    }
+    .hwstatus-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .hwstatus-state-num{
+        height:36px;
+        border-bottom: solid 1px var(--grey-3);
+        display: flex;
+    }
+    .hwstatus-state-num-wrapper{
+        margin-top:auto;
+        margin-bottom:auto;
+        height:20px;
+        width:100%;
+        display: flex;
+    }
+    .hwstatus-error{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-error>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: var(--ui-red);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-error>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    .hwstatus-normal{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-normal>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: var(--grey-6);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-normal>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    .hwstatus-disconnected{
+        height:100%;
+        width:46px;
+        display: flex;
+        padding-right: 5px;
+    }
+    .hwstatus-disconnected>.status-circle{
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        border: solid 1px var(--grey-5);
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+    }
+    .hwstatus-disconnected>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin:auto;
+    }
+    
+
+    .hwstatus-devices{
+        padding-top: 8px;
+        height:400px;
+        width:100%;
+        overflow-y: auto;
+    }
+    .hwstatus-devices-case{
+        width:100%;
+        height:32px;
+        display: flex;
+    }
+    .hwstatus-devices-state{
+        display: flex;
+        width:28px;
+        height:100%;
+    }
+    .device-status-circle{
+        margin:auto;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+    }
+    .status-circle-error{
+        background-color: var(--ui-red);
+    }
+    .status-circle-normal{
+        background-color: var(--grey-6);
+    }
+    .status-circle-disconnected{
+        border: solid 1px var(--grey-5);
+    }
+
+
+    .hwstatus-devices-name{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        display: flex;
+    }
+    .hwstatus-devices-name>span{
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-right: auto;
+    }
+    .robot-status-case{
+        height:300px;
+        background-color: var(--grey-0);
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="component-title">
+        <span >로봇 정보</span>
+    </div>
+    <div class="robot-status-case">
+        <div class="robot-status-wrapper">
+            <div class="status-box" >
+                <div class="robotinfo ">
+                    <div class="robotinfo-title">
+                        <div class="robotinfo-title-profile">
+                            <img ng-src="{{$root.dataShare.crt_robot.profile}}" alt="">
+                        </div>
+                        <div class="robotinfo-title-name " ng-if="$root.dataShare.crt_robot!=99">
+                            <div class="robotinfo-title-state ">
+                                <div class="robotinfo-title-state-card state-error-color" ng-if="$root.dataShare.crt_robot.finalstate==1">
+                                    <span>에러</span>
+                                </div>
+                                <div class="robotinfo-title-state-card state-normal-color" ng-if="$root.dataShare.crt_robot.finalstate==0">
+                                    <span>동작중</span>
+                                </div>
+                                <div class="robotinfo-title-state-card state-manual-color" ng-if="$root.dataShare.crt_robot.finalstate==2">
+                                    <span>수동</span>
+                                </div>
+                                <div class="robotinfo-title-state-card state-disconnected-color" ng-if="$root.dataShare.crt_robot.finalstate==3">
+                                    <span>비접속</span>
+                                </div>
+                            </div>
+                            <div class="robotinfo-title-name-txt ">
+                                <span data-ng-bind="$root.dataShare.crt_robot.name"></span>
+                            </div>
+                            <div class="robotinfo-title-type-txt " >
+                                <span data-ng-bind="$root.dataShare.crt_robot.type"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="robotinfo-battery">
+                        <span class="info-txt-title">배터리</span>
+                        <div class="robotinfo-battery-wrapper">
+
+                            <div class="robotinfo-battery-battery-panel">
+                                <span data-ng-bind="$root.dataShare.crt_robot.battery" ng-if="$root.dataShare.crt_robot!=99"></span>
+                                <span>%</span>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-100" ng-if="$root.dataShare.crt_robot.battery>=100">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+                            <div class="robot-list-battery-icon remains-90" ng-if="$root.dataShare.crt_robot.battery>=90 && $root.dataShare.crt_robot.battery<100">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+                            <div class="robot-list-battery-icon remains-80" ng-if="$root.dataShare.crt_robot.battery>=80 && $root.dataShare.crt_robot.battery<90">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-70" ng-if="$root.dataShare.crt_robot.battery>=70 && $root.dataShare.crt_robot.battery<80">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-60" ng-if="$root.dataShare.crt_robot.battery>=60 && $root.dataShare.crt_robot.battery<70">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-50" ng-if="$root.dataShare.crt_robot.battery>=50 && $root.dataShare.crt_robot.battery<60">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-40" ng-if="$root.dataShare.crt_robot.battery>=40 && $root.dataShare.crt_robot.battery<50">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-30" ng-if="$root.dataShare.crt_robot.battery>=30 && $root.dataShare.crt_robot.battery<40">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-20" ng-if="$root.dataShare.crt_robot.battery>=20 && $root.dataShare.crt_robot.battery<30">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-10" ng-if="$root.dataShare.crt_robot.battery>=10 && $root.dataShare.crt_robot.battery<20">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-10" ng-if="$root.dataShare.crt_robot.battery>0 && $root.dataShare.crt_robot.battery<10">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+
+                            <div class="robot-list-battery-icon remains-0" ng-if="$root.dataShare.crt_robot.battery<=0">
+                                <div class="battery-icon-body">
+                                    <div class="battery-icon-remains "></div>
+                                </div>
+                                <div class="battery-icon-top"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="robotinfo-task">
+                        <span class="info-txt-title">서비스 상태</span>
+                        <div class="robotinfo-task-txt-case">
+                            <span class="info-txt-value"
+                                ng-if="$root.dataShare.crt_robot!=99"
+                                data-ng-bind="$root.dataShare.crt_robot.context"></span>
+                        </div>
+                        
+                    </div>
+                    <div class="robotinfo-task">
+                        <span class="info-txt-title">에러 상태</span>
+                        <div class="robotinfo-task-txt-case">
+                            <span class="info-txt-value"
+                                ng-if="$root.dataShare.crt_robot!=99"
+                                data-ng-bind="$root.dataShare.crt_robot.fault"></span>
+                        </div>
+                    </div>
+                    <div class="robotinfo-task">
+                        <span class="info-txt-title">자율주행 상태</span>
+                        <div class="robotinfo-task-txt-case">
+                            <span class="info-txt-value"
+                                ng-if="$root.dataShare.crt_robot!=99"
+                                data-ng-bind="$root.dataShare.crt_robot.act_status"></span>
+                            <span class="info-txt-value"
+                                ng-if="$root.dataShare.crt_robot.act_status!='' &&
+                                $root.dataShare.crt_robot.auto_drv_state!=''"> - </span>
+                            <span class="info-txt-value"
+                                ng-if="$root.dataShare.crt_robot!=99"
+                                data-ng-bind="$root.dataShare.crt_robot.auto_drv_state"></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="drivinginfo">
+                    <div class="drivinginfo-title">
+                        <span>ROBOT DRIVING INFO</span>
+                    </div>
+                    <div class="drivinginfo-speed">
+                        <span class="info-txt-title">Speed</span>
+                        <span class="info-txt-value" ng-if="$root.dataShare.crt_robot!=99">m/s</span>
+                    </div>
+                    <div class="drivinginfo-location">
+                        <div>
+                            <span class="info-txt-title">Location(x,y,z)</span>
+                        </div>
+                        <div class="info-txt-value-case" ng-if="$root.dataShare.crt_robot!=99">
+                            <div>
+                                <span 
+                                    class="info-txt-value" 
+                                    data-ng-bind="getPoseCoordTxt($root.dataShare.crt_robot.pose.position)">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="drivinginfo-direction">
+                        <div>
+                            <span class="info-txt-title">Direction (x,y,z,w)</span>
+                        </div>
+                        <div class="info-txt-value-case" ng-if="$root.dataShare.crt_robot!=99">
+                            <div>
+                                <span 
+                                    class="info-txt-value" 
+                                    data-ng-bind="getDirCoordTxt($root.dataShare.crt_robot.pose.orientation)">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+            <!-- <div class="hwstatus-box">
+                <div class="hwstatus-title">
+                    <span>H/W STATUS</span>
+                </div>
+                <div class="hwstatus-state-num">
+                    <div class="hwstatus-state-num-wrapper">
+                        <div class="hwstatus-error ">
+                            <div class="status-circle"></div>
+                            <span class="info-txt-value" data-ng-bind="getDeviceStateNum('error')"></span>
+                        </div>
+                        <div class="hwstatus-normal ">
+                            <div class="status-circle"></div>
+                            <span class="info-txt-value" data-ng-bind="getDeviceStateNum('normal')"></span>
+                        </div>
+                        <div class="hwstatus-disconnected ">
+                            <div class="status-circle"></div>
+                            <span class="info-txt-value" data-ng-bind="getDeviceStateNum('disconnected')"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hwstatus-devices ">
+                    
+                    <div class="hwstatus-devices-case" ng-repeat="item in $root.dataShare.crt_robot_device">
+                        <div class="hwstatus-devices-state " >
+                            <div class="device-status-circle status-circle-error" ng-if="item.state=='error'"></div>
+                            <div class="device-status-circle status-circle-normal" ng-if="item.state=='normal'"></div>
+                            <div class="device-status-circle status-circle-disconnected" ng-if="item.state=='disconnected'"></div>
+                        </div>
+                        <div class="hwstatus-devices-name">
+                            <span class="info-txt-value" data-ng-bind="item.name"></span>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

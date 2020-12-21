@@ -1,0 +1,22 @@
+/*
+    color style guide
+*/
+:root {
+    --grey-0: #f8f9fa;
+    --grey-1: #eef1f4;
+    --grey-2: #e6e8ea;
+    --grey-3: #dee2e6;
+    --grey-4: #ced4da;
+    --grey-5: #adb5bd;
+    --grey-6: #868e96;
+    --grey-7: #495057;
+    --grey-8: #343a40;
+    --grey-9: #212529;
+    --primary-1: #475bed;
+    --primary-2: #4569da;
+    --primary-3: #80a3e6;
+    --secondary: #0d2337;
+    --ui-red: #fa5252;
+    --ui-green: #23b76b;
+    --ui-yellow: #f9c218;
+}

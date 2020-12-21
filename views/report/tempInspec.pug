@@ -1,0 +1,61 @@
+extends ../header.pug
+block subnav
+    //- stylesheet        
+    link(rel="stylesheet", href="/static/css/tempInspec.css")
+    
+    div(id="subnavSrvMonitoring" class="subnav" ng-controller="suvnavCtrl")
+        div(class="subnav-container")
+            div(class="subnav-title")
+                span() Temperature Inspection Report
+            div(class="vertical-divider")
+            div(class="zone-selector-container" )
+                ul(class="nav navbar-nav")
+                    li(class="dropdown")
+                        div(
+                            href="#" 
+                            class="" 
+                            data-toggle="dropdown" 
+                            role="button" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                            )
+                            span(data-ng-bind="getCrtZoneName($root.dataShare.crt_zone)")
+                            div(class="zone-select-btn")
+                                span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(
+                                ng-repeat="item in $root.dataShare.zonelist" 
+                                ng-click="chooseZone($index)")
+                                a(href="#")
+                                    span(data-ng-bind="item.name")
+            div(class="arrow-divider")
+                i(class="fa fa-angle-right" aria-hidden="true")
+            div(class="robot-selector" ng-if="$root.dataShare.robotlist.length!=0")
+                div(class="selected" ng-click="chooseAllRobot($event)")
+                    span All
+                div(class="" ng-repeat="item in $root.dataShare.robotlist" ng-click="chooseRobot($index,$event)")
+                    span(class="vertical-divider")
+                    span(data-ng-bind="item.name")
+
+block content
+    div(class="container-fluid main-container-fluid")
+        div(class="raw")
+            span 온도검사
+            //- //- map view
+            //- div(id="main-mapview" class="col-lg-8 content-container component-open")
+            //-     div(class="content-wrapper")
+            //-         div(class="component-title")
+            //-             span Map View
+            //-         div(class="component-body-l")
+            //-             mv-map( option='{}')
+
+            //- //- camera view
+            //- div(id="camera-view" class="col-lg-8 content-container component-close")
+            //-     camera-view( option='{}')
+                
+            //- //- activity feed
+            //- div(id="activityFeed" class=" col-lg-4 content-container")
+            //-     feedtable(option='{}')
+
+block scriptadding
+    script(type="text/javascript", src="/static/js/tempInspec.js")

@@ -1,0 +1,113 @@
+<style>
+    .command-component-title{
+        display: flex;
+        top:0;
+        width:100%;
+        height:44px;
+        background-color: var(--grey-0);
+        border-bottom:solid var(--grey-4) 1px;
+        padding-left: var(--spacing-m);
+    }
+    .command-component-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top:auto;
+        margin-bottom: auto;
+    }
+    .command-open-btn-case{
+        width:42px;
+        height:100%;
+        border-left: solid var(--grey-3) 1px;
+        display: flex;
+        margin-left:auto;
+    }
+    .command-open-btn-case-clicked{
+        width:42px;
+        height:100%;
+        display: flex;
+        margin-left:auto;
+
+        background-color: var(--grey-6);
+        border-left: solid var(--grey-3) 1px;
+    }
+    .command-open-btn-case-clicked>img{
+        width:24px;
+        height:24px;
+        margin:auto;
+        pointer-events: none;
+    }
+    .command-open-btn-case>img{
+        width:24px;
+        height:24px;
+        margin:auto;
+        pointer-events: none;
+    }
+    .command-btn-upsidedown{
+        transform: rotate(180deg);
+    }
+    .command-component-body-custom{
+        background-color: var(--grey-0);
+        overflow: hidden;
+    }
+    .command-component-body-custom-close{
+        height:0;
+    }
+    .command-component-body-custom-open{
+        height:20vh;
+    }
+
+    .command-component-body-custom{
+        background-color: var(--grey-0);
+    }
+    .command-component-body-custom-close{
+        height:0;
+    }
+    .command-component-body-custom-open{
+        height:20vh;
+    }
+</style>
+
+<div class="content-wrapper">
+    <div class="command-component-title">
+        <span >Command</span>
+        <div 
+            ng-click="onOpenBtn($event)"
+            ng-class="{ 'command-open-btn-case-clicked': isOpen, 'command-open-btn-case': !isOpen}">
+
+                <img ng-if="isOpen==false" src="/static/imgs/icons/chevron-down.svg" alt="">
+                <img ng-if="isOpen==true" class="command-btn-upsidedown" src="/static/imgs/icons/chevron-down.svg" alt="">
+        </div>
+        
+    </div>
+    <div 
+        class="command-component-body-custom"
+        ng-class="{ 'command-component-body-custom-open': isOpen, 'command-component-body-custom-close': !isOpen}"> 
+        
+        <!-- demo code -->
+<!--         
+        <button ng-click="bodyTempFault()">bodyTempFault</button>
+        <button ng-click="serviceOn()">Service On</button>
+        <button ng-click="serviceOff()">Service Off</button>
+        <button ng-click="localizationOn()">localization On</button>
+        <button ng-click="localizationOff()">localization Off</button>
+
+        
+        <button ng-click="manualOn()">manul mobile On</button>
+        <button ng-click="manualOff()">manul mobile Off</button>
+        
+        
+        <button ng-repeat="item in demoList.btnList" 
+        ng-click="onClickDemoBtn($index)">{{item}}</button> -->
+        <!-- demo code end -->
+
+    </div>
+</div>
+
+
+

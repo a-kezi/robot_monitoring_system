@@ -1,0 +1,323 @@
+<style>
+    .camera-view-content-body{
+        height:100px;
+        background-color: var(--grey-0);
+    }
+    .camera-view-body{
+        width: 100%;
+        height: 100%;
+        background-color: var(--grey-0);
+        /* padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m); */
+        padding-bottom: var(--spacing-m);
+        
+    }
+    .camera-view-content{
+        height:100%;
+        
+    }
+    .camera-view-left-case{
+        width: 304px;
+        
+        
+
+    }
+    .camera-view-right-case{
+        padding-left: var(--spacing-m);
+        width: 100%;
+
+    }
+    .camera-view-btn-case{
+        display:flex;
+        padding-top:12px;
+        padding-bottom:16px;
+
+    }
+    .camera-view-btn-on{
+        cursor:pointer;
+        width: 95px;
+        height: 32px;
+        border-radius: 2px;
+        background-color: var(--ui-red);
+        padding-left: var(--spacing-xs);
+        margin-right: var(--spacing-xs);
+
+        display:flex;
+    }
+    .camera-view-btn-off{
+        cursor:pointer;
+        width: 95px;
+        height: 32px;
+        border-radius: 2px;
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+        padding-left: var(--spacing-xs);
+
+        display:flex;
+    }
+    .camera-view-btn-on>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .camera-view-btn-off>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .square-icon-case{
+        width:24px;
+        height:24px;
+        display:flex;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .square-icon{
+        margin:auto;
+        
+    }
+    .four-square-icon{
+        
+        margin:auto;
+    }
+    .small-mapview-case{
+        width: 304px;
+        height: 260px;
+        border: solid 1px var(--grey-4);
+        margin-bottom: var(--spacing-m);
+    }
+    .camera-list-case{
+        width: 100%;
+        height: 34%;
+        /* border: solid 1px var(--grey-4); */
+    }
+    .camera-list-title{
+        height:40px;
+        border-bottom: solid 1px var(--grey-3);
+        display:flex;
+        padding-left:var(--spacing-m);
+
+    }
+    .camera-list-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .camera-list-body{
+        height:100%;
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+        position: relative;
+        overflow-y: auto;
+    }
+    .camera-list-robot-type{
+        height:36px;
+        display:flex;
+
+    }
+    .camera-list-robot-type-txt{
+        margin-left:auto;
+        margin-top:auto;
+        margin-bottom:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-5);
+    }
+    .camera-list-camera{
+        cursor:pointer;
+        border-radius: 2px;
+        height:56px;
+        box-shadow: 0 2px 2px 0 var(--grey-3);
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+        margin-bottom: var(--spacing-m);
+        display:flex;
+        padding-left:var(--spacing-m);
+    }
+    .camera-list-camera>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .camera-oneview{
+        height:33%;
+        width:100%;
+        position:relative;
+    }
+    
+    .camera-view-title{
+        /* background-color: rgba(0, 0, 0, 0.5); */
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
+        position: absolute;
+        height:40px;
+        width:100%;
+        left:0;
+        top:0;
+        display: flex;
+        padding-left: var(--spacing-m);
+        z-index: 2;
+    }
+    .camera-view-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .camera-view-video{
+        background-image: url("/static/imgs/icons/background_logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+
+        background-size: cover;
+
+        position: absolute;
+        height:100%;
+        width:100%;
+        left:0;
+        top:0;
+        display: flex;
+    }
+    .camera-view-video>img{
+        margin: auto;
+        width:100%;
+    }
+
+    .camera-fourview-container{
+        margin:0px !important;
+        padding: 0px !important;
+
+    }
+    .camera-fourview-row{
+        height:50%;
+        margin:0px !important;
+        padding: 0px !important;
+    }
+    .camera-fourview{
+        height:100%;
+        width:100%;
+        position:relative;
+        
+    }
+
+    .camera-fourview-videocase{
+        display:flex;
+        height:100%;
+    }
+    .camera-fourview-video{
+        background-image: url("/static/imgs/icons/background_logo.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+
+        position: absolute;
+        height:100%;
+        width:100%;
+        left:0;
+        top:0;
+    }
+    
+    
+    
+</style>
+
+
+<div class="content-wrapper">
+    <div class="camera-view-content-body">
+        <div class="camera-view-body">
+            <!-- camera view -->
+            <div id="cameraone" class="camera-oneview" droppable="true" camera-view-sub-drop-item>
+                <div class="camera-view-title">
+                    <span id="cameraOne_name" data-ng-bind="cameraOne_name"></span>
+                </div>
+                <div class="camera-view-video">
+                    <img class="" id="videoOne" src="" alt="">
+                </div>
+            </div>
+            <div id="cameratwo" class="camera-oneview" droppable="true" camera-view-sub-drop-item>
+                <div class="camera-view-title">
+                    <span id="cameraTwo_name" data-ng-bind="cameraTwo_name"></span>
+                </div>
+                <div class="camera-view-video">
+                    <img class="" id="videoTwo" src="" alt="">
+                </div>
+            </div>
+            <!-- camera list -->
+            <div class="camera-list-case">
+                <div class="camera-list-title">
+                    <span>Camera List</span>
+                </div>
+                <div class="camera-list-body">
+                    <div class="camera-list-robot-type">
+                        <div class="camera-list-robot-type-txt">
+                            <span>Robot Type :</span>
+                            <span data-ng-bind="$root.dataShare.crt_robot.type"></span>
+                        </div>
+                    </div>
+
+                    <!-- 반복 부분-->
+                    <div ng-repeat="item in cameraList track by $index" id="camera.{{$index}}" class="camera-list-camera" draggable="true" camera-view-sub-drag-item>
+                        <span data-ng-bind="item.position"></span>
+                    </div>
+                    <!-- 반복 종료-->
+
+                </div>
+            </div>
+            
+        </div>
+
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+

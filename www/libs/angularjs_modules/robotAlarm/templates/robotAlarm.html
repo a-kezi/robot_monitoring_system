@@ -1,0 +1,795 @@
+<style>
+    robot-alarm{
+        position:relative;
+        display: flex;
+        margin:auto;
+        width:100%;
+        height:100%;
+    }
+    .alarm-main-icon{
+        margin:auto;
+        cursor: pointer;
+
+    }
+    /*
+        alarm history
+    */
+    .alarm-history-title{
+        width:100%;
+        height:44px;
+        display:flex;
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+        border-bottom: solid 1px var(--grey-3);
+    }
+    .alarm-history-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top: auto;
+        margin-bottom: auto;
+    }
+    .alarm-msg-box{
+        width:100%;
+        height:108px;
+        border-bottom: solid 1px var(--grey-3);
+        display:flex;
+        overflow: hidden;
+        
+    }
+    .alarm-history{
+        margin-top:54px;
+        position: absolute;
+        width:400px;
+        height:640px;
+        top:0px;
+        left:0px;
+        transform:translate(-18%, 0%);
+        background-color: var(--grey-0);
+        box-shadow: 0 4px 16px 0 var(--grey-4);
+        
+    }
+
+    #alarm-list-box{
+        width:100%;
+        /* height:595px; */
+        height:100%;
+        overflow-y: auto;
+        
+    }
+    .alarm-history-icon-case{
+        width:18%;
+        height:100%;
+        display: flex;
+    }
+    .alarm-history-icon{
+        width:40px;
+        height:40px;
+        /* background-color: var(--grey-3); */
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: var(--spacing-xl);
+    }
+    .alarm-history-info-case{
+        width:82%;
+        height:100%;
+    }
+    .alarm-history-check-btn{
+        width:45px;
+        height:35px;
+        margin-top:auto;
+        margin-bottom:auto;
+        pointer-events: initial;
+
+        border: solid 1px var(--grey-4);
+        border-radius: 5px;
+        background-color: var(--grey-1);
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        padding:0px;
+    }
+
+    .alarm-history-refresh{
+
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+
+        height:32px;
+        width:99px;
+        border: solid 1px var(--grey-4);
+        border-radius: 5px;
+        background-color: var(--grey-1);
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        padding:0px;
+    }
+
+
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*
+        toast component
+    */
+    @keyframes blink{
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes emergencyblink{
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.8;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+    @keyframes sliding{
+        0% {
+            transform:translate(100%, 0%);
+        }
+        100% {
+            transform:translate(0%, 0%);
+        }
+    }
+    .alarm-ani-sliding{
+        animation-duration: 1s;
+        animation-name: sliding;
+        animation-iteration-count: 1;
+    }
+    .alarm-ani-blink{
+        animation-duration: 1s;
+        animation-name: blink;
+        animation-iteration-count: 2;
+    }
+    
+
+    
+    
+    #toast-content-case{
+        
+        padding-top:var(--spacing-xl);
+        right:0px;
+        height:220px;
+        width:678px;
+        overflow: hidden;
+        position: absolute;
+        z-index: 999;
+        pointer-events: none;
+        /* border:solid red 2px; */
+    }
+    #toast-content{
+        right:0px;
+        position:relative;
+        /* border: solid green 2px; */
+    }
+    .toast-show-num-case{
+        position: absolute;
+        right:var(--spacing-xs);
+        width: 144px;
+        height: 32px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+        background-color: var(--grey-0);
+        display: flex;
+
+        
+    }
+    .toast-show-num-txtbox{
+        width:80%;
+        height:100%;
+        display: flex;
+
+        /* border:solid blue 1px; */
+    }
+    .toast-show-num-txtbox>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+        margin-right:2px;
+        
+        font-family: NotoSansCJKkr;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 2.2;
+        letter-spacing: normal;
+        color: #f03e3e;
+    }
+    .toast-show-num-circle{
+        width:20%;
+        height:100%;
+        border-radius: 50%;
+        border:solid var(--grey-0) 4px;
+        background-color: #f03e3e;
+        display: flex;
+    }
+    .toast-show-num-circle>span{
+        margin:auto;
+        font-family: NotoSansCJKkr;
+        font-size: 14px;
+        font-weight: 900;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .toast-show-card{
+        position: absolute;
+        right:var(--spacing-xl);
+        margin-top: 16px;
+        width:654px;
+        height:104px;
+        
+        border-radius: 4px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+        border: solid 1px #c92a2a;
+        background-color: #f03e3e;
+
+        display: flex;
+    }
+    .toast-icon-case{
+        width:11%;
+        height:100%;
+        display: flex;
+    }
+    .toast-img-box{
+        width:40px;
+        height:40px;
+        /* background-color: white; */
+        margin:auto;
+    }
+    .toast-info-case{
+        width:77%;
+        height:100%;
+    }
+    .toast-info-case-top{
+        width:100%;
+        height:50%;
+        display: flex;
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-0);
+
+    }
+    .toast-info-case-top>span{
+        margin-top: auto;
+    }
+
+    .toast-info-case-bottom{
+        display: flex;
+        width:100%;
+        height:50%;
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        color: var(--grey-0);
+        padding-top: var(--spacing-xxs);
+        padding-right: var(--spacing-m);
+    }
+    .toast-info-case-bottom-location{
+        margin-left: right;
+        display: flex;
+    }
+    .toast-info-case-bottom-time{
+        margin-left: auto;
+    }
+    .toast-btn-case{
+        width:12%;
+        height:100%;
+        border-left: solid 1px #c92a2a;
+        display: flex;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-0);
+
+        pointer-events: initial;
+        background-color: #f03e3e;
+    }
+    /* .toast-btn-case:hover{
+        color: var(--grey-4);
+    } */
+    .toast-btn-case:active{
+        color: var(--grey-4);
+        background-color: #ce3535;
+    }
+    .toast-btn-case>span{
+        margin: auto;
+    }
+
+
+    
+    /*
+        popup component
+    */    
+    #popup-content-case{
+        height:100%;
+        width:100%;
+        position:absolute;
+        top:0;
+        left:0;
+        z-index: 9999;
+        pointer-events: none;
+        /* border:solid blue 2px; */
+    }
+    #alarm-emergency{
+        height:100px;
+        width:100vw;
+        /* transform:translate(-50%, 0%); */
+        position:absolute;
+        bottom:0;
+        left:0;
+        background: linear-gradient(rgba(0,0,0,0), lightcoral);
+        pointer-events: none;
+        animation-duration: 1s;
+        animation-name: emergencyblink;
+        animation-iteration-count: infinite;
+        
+    }
+    #popup-content{
+        height:100%;
+        width:100%;
+        pointer-events: none;
+        display: flex;
+    }
+    .popup-content-backlight{
+        position:absolute;
+        top:0px;
+        left:0px;
+        height:100%;
+        width:100%;
+        opacity: 1;
+        background-color: #f03e3e;
+        pointer-events: none;
+        animation-duration: 1s;
+        animation-name: emergencyblink;
+        animation-iteration-count: infinite;
+    }
+    .popup-content-center-box{
+        z-index: 9999;
+        margin:auto;
+        height:720px;
+        width:1287px;
+        position: relative;
+    }
+    .popup-content-top-case{
+        height:65%;
+        width: 100%;
+        display: flex;
+    }
+    .popup-content-top-left-case{
+        height:100%;
+        width: 26%;
+        display: flex;
+    }
+    .popup-content-top-left-wrapper{
+        margin:auto;
+    }
+    .popup-content-top-mid-case{
+        height:100%;
+        width: 12px;
+        margin-left: 35px;
+        margin-right: 45px;
+
+    }
+    .popup-content-top-mid-case>img{
+        height:100%;
+        width: 12px;
+    }
+    .popup-content-top-right-case{
+        height:100%;
+        width: 70%;
+        padding-top: var(--spacing-l);
+    }
+    .popup-content-sign{
+        display: flex;
+    }
+    .popup-content-sign>img{
+        margin:auto;
+    }
+    .popup-content-title{
+        padding-top:10px;
+        padding-bottom:10px;
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 56px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.29;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-0);
+    }
+    .popup-content-time{
+        margin-bottom: var(--spacing-xl);
+
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .popup-content-commentcase{
+        width:100%;
+        margin-bottom: var(--spacing-xl);
+
+        font-family: SpoqaHanSans;
+        font-size: 28px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .popup-content-locationcase{
+        width:100%;
+        margin-bottom: var(--spacing-xs);
+        display: flex;
+
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .dot-custom-popup{
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left:10px;
+        margin-right:10px;
+    }
+
+    .popup-content-photocase{
+        height:260px;
+        width:100%;
+        display: flex;
+        margin-bottom: 100px;
+    }
+    .popup-content-map{
+        pointer-events: initial;
+        margin-right: 24px;
+        width:400px;
+        height:260px;
+        overflow: hidden;
+    }
+    .popup-content-img{
+        width:400px;
+        height:260px;
+        overflow: hidden;
+    }
+    .popup-content-img>img{
+        width:400px;
+        height:260px;
+    }
+    .popup-content-uncheckedcase{
+        height:50px;
+        width:100%;
+    }
+    .popup-show-num-case{
+        margin:auto;
+        width: 174px;
+        height: 32px;
+        border-radius: 16px;
+        box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+        background-color: var(--grey-0);
+        display: flex;
+    }
+    .popup-show-num-txtbox{
+        width:80%;
+        height:100%;
+        display: flex;
+
+        /* border:solid blue 1px; */
+    }
+    .popup-show-num-txtbox>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+        margin-right:2px;
+        
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.63;
+        letter-spacing: normal;
+        text-align: right;
+        color: #f03e3e;
+    }
+    .popup-show-num-circle{
+        width:20%;
+        height:100%;
+        border-radius: 50%;
+        border:solid var(--grey-0) 4px;
+        background-color: #f03e3e;
+        display: flex;
+    }
+    .popup-show-num-circle>span{
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+
+    .popup-content-mid-case{
+        height:25%;
+        width:100%;
+        display: flex;
+    }
+
+
+    .popup-content-btm-case{
+        height:8%;
+        width:100%;
+        display: flex;
+    }
+    .popup-content-btn{
+        margin:auto;
+        width: 253px;
+        height: 54px;
+        border-radius: 4px;
+        border: solid 1px var(--grey-0);
+        display: flex;
+        pointer-events: initial;
+
+        font-family: SpoqaHanSans;
+        font-size: 24px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.42;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-0);
+    }
+    .popup-content-btn:hover{
+        color: rgba(0, 0, 0, 0.3);
+        background-color: var(--grey-0);
+    }
+    .popup-content-btn:active{
+        color: var(--grey-4);
+        background-color: rgba(0, 0, 0, 0.3);
+    }
+    .popup-content-btn>span{
+        margin:auto;
+        
+    }
+
+
+    .alarm-main-btn{
+        width: 140px;
+        height: 32px;
+        border-radius: 2px;
+        background-color: var(--grey-8);
+        margin:auto;
+        display: flex;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+    .alarm-main-btn>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        color: var(--grey-0);
+        margin-top:auto;
+        margin-bottom:auto;
+        
+    }
+
+    .alarm-main-btn-icon{
+        width: 24px;
+        height: 24px;
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:8px;
+        
+    }
+    .alarm-history-info-case-top{
+        width:100%;
+        padding-top: 24px;
+        overflow: hidden;
+    }
+    .alarm-history-info-comment{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.38;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+    .alarm-history-info-case-bottom{
+        width:100%;
+        padding-top: 4px;
+        display: flex;
+        padding-right: var(--spacing-m);
+    }
+    .alarm-history-info-robot{
+        margin-right:auto;
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .alarm-history-info-time{
+        margin-left:auto;
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.57;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-6);
+    }
+    .dot-custom-alarm{
+        font-size: 5px !important;
+        margin-top: 6px;
+        margin-left: 4px;
+        margin-right: 4px;
+        
+    }
+    
+</style>
+
+
+
+
+<div class="alarm-main-btn" ng-click="onClickIcon($event)">
+    <img class="alarm-main-btn-icon"
+    src="/static/imgs/icons/bell.png"
+    alt="alar-icon">
+    <span>알람 히스토리</span>
+</div>
+<div class="alarm-history" ng-show="isAlarmHistoryOpen">
+    <div id="alarm-list-box">
+
+        <!-- 반복구간 -->
+        <div class="alarm-msg-box " ng-repeat="msg in alarmHistoryList">
+            <div class="alarm-history-icon-case ">
+                <div class="alarm-history-icon">
+                    <img width="40px" height="40px"
+                        ng-src ="{{msg.historyIconSrc}}"
+                        alt="">
+                </div>
+            </div>
+            <div class="alarm-history-info-case">
+                <div class="alarm-history-info-case-top " >
+                    <!-- <span 
+                    class="alarm-history-info-comment"
+                    data-ng-bind="getAlarmComment(msg)"></span> -->
+                    <span 
+                    class="alarm-history-info-comment"
+                    data-ng-bind="msg.alarmComment"></span>
+                </div>
+                <div class="alarm-history-info-case-bottom ">
+                    <span 
+                    class="alarm-history-info-robot"
+                    data-ng-bind="msg.robot_id"></span>
+
+                    <span 
+                    class="alarm-history-info-time"
+                    data-ng-bind="getTimeForm(msg.timestamp)"></span>
+                    <!-- <span 
+                    class="alarm-history-info-time"
+                    data-ng-bind="msg.timeForm"></span> -->
+
+                    
+                    
+                    
+                </div>
+                
+            </div>
+        </div>
+        <!-- 반복구간 end-->
+
+
+    </div>
+</div>
+

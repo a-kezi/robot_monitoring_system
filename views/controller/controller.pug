@@ -1,0 +1,82 @@
+extends ../header.pug
+block subnav
+    //- stylesheet        
+    link(rel="stylesheet", href="/static/css/controller.css")
+    
+    div(id="controller" class="subnav" ng-controller="suvnavCtrl")
+        div(class="subnav-container")
+            div(class="subnav-title")
+                span() 로봇 컨트롤러
+            div(class="vertical-divider")
+            div(class="zone-selector-container" )
+                ul(class="nav navbar-nav")
+                    li(class="dropdown")
+                        div(
+                            href="#" 
+                            class="zone-select-box" 
+                            data-toggle="dropdown" 
+                            role="button" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                            )
+                            span(class="" data-ng-bind="getCrtZoneName($root.dataShare.crt_zone)")
+                            div(class="zone-select-btn ")
+                                span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(
+                                ng-repeat="item in $root.dataShare.zonelist" 
+                                ng-click="chooseZone($index)")
+                                a(href="#")
+                                    span(data-ng-bind="item.name")
+            div(class="arrow-divider")
+                i(class="fa fa-angle-right" aria-hidden="true")
+            div(class="robot-selector" ng-if="$root.isRobotReady==true")
+                div(class="robot-selector-robotbtn-case" ng-repeat="item in $root.dataShare.robotlist" )
+                    div(class="robot-selector-robotbtn-icon")
+                        img(alt="" ng-src="{{item.selector_profile.remote}}" ng-if="item.finalstate==2")
+                        img(alt="" ng-src="{{item.selector_profile.fault}}" ng-if="item.finalstate==1")
+                        img(alt="" ng-src="{{item.selector_profile.normal}}" ng-if="item.finalstate==0")
+                        img(alt="" ng-src="{{item.selector_profile.disconnected}}" ng-if="item.finalstate==3")
+                        img(alt="" ng-src="{{item.selector_profile.disconnected}}" ng-if="item.finalstate==undefined")
+                    div(class="robot-selector-robotbtn-name " ng-click="chooseRobot($index,$event)")
+                        img(alt="" 
+                            ng-if="item.id==$root.dataShare.crt_robot.id" 
+                            src="/static/imgs/icons/check-selected-pin.svg")
+                        span(data-ng-bind="item.name")
+
+block content
+    div(class="container-fluid main-container-fluid")
+        div(class="raw")
+            //- camera view
+            div(id="camera-view" class="col-lg-3 content-container component-open")
+                camera-view-sub( option='{}')
+
+            //- controller set
+            .controller-set.col-lg-9.content-container.component-open
+                //- map view
+                div(id="mapview" class="content-container")
+                    map-view(class="controller-mv" mode="controller" title="false" planner="true")
+                    
+                div(id="robot-status-sub" class="content-container")
+                    robot-status-sub(option='{}')
+                
+                div(id="robot-remote-panel" class="content-container testborder-g")
+                    control-panel(option='{}')
+
+                //- div.control-panel-wrapper
+                //-     control-panel(option='{}')
+            
+                //- div(id="robot-detail" class="col-lg-3 component-open" style="padding:0px;")
+                //-     //- robot status
+                //-     div(class="content-container")
+                //-         robot-status(option='{}')
+                //-         //- robot-status-sub(option='{}')
+                    
+                //-     //- control panel
+                //-     div(class="content-container")
+                //-         command-panel(option='{}')
+
+block scriptadding
+    script(type="text/javascript", src="/static/js/controller.js")
+
+    

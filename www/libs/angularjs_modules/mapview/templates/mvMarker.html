@@ -1,0 +1,29 @@
+<style>
+    .map-obj-marker{
+        position: absolute;
+        pointer-events:none;
+    }
+    .marker-case{
+        position: absolute;
+        pointer-events:none;
+    }
+    
+
+</style>
+
+<!-- marker objs -->
+<!-- ng-repeat="place in mvMap.poi | filter: {display:true}" -->
+<div class="marker-case">
+    <div ng-if="poi.length!=0"
+    class="map-obj-marker" 
+    ng-repeat="place in poi" 
+    ng-style="place.iconPosition" 
+    mv-repeat>
+        <img ng-src="{{place.iconSrc.orientation}}" name="poi.{{place.name}}" ng-style="place.iconStyle.orientation"> 
+        <img ng-src="{{place.iconSrc.position}}" name="poi.{{place.name}}" ng-style="place.iconStyle.position"> 
+    </div>
+
+</div>
+
+
+

@@ -1,0 +1,374 @@
+<style>
+    .component-title{
+        display:flex;
+    }
+    .component-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+
+    /*msg type selector*/
+    .msgtype-select{
+        max-height:277px;
+        overflow-y: auto;
+    }
+    .msgtype-selector-container{
+        width: 240px;
+        height: 32px;
+        border-radius: 2px;
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+        color : var(--secondary);
+        display: flex;
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+        padding: 4px 16px 4px 16px;
+    }
+    .msgtype-selector-container > ul{
+        width:100%;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .msgtype-selector-container>ul>.dropdown{
+        width:100%;
+    }
+    .msgtype-selector-container>ul>.dropdown>div{
+        display: flex;
+        width:100%;
+    }
+    .msgtype-select-btn{
+        align-self: end;
+        margin-left:auto;
+    }
+    .msgtype-selector-container .navbar-nav .dropdown-menu{
+        top:111%;
+        left:-16px;
+        width:234px;
+        background-color: var(--grey-7);
+        background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0.2),rgba(73, 80, 87, 1) 9px)
+    }
+    .msgtype-selector-container .navbar-nav .dropdown-menu a{
+        background-color: var(--grey-7);
+    }
+    .msgtype-select-btn .caret {
+        margin-left:4px;
+        margin-bottom:4px;
+        border-top:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-5);
+        border-bottom-color: var(--grey-5);
+    }
+
+    .msgtype-selector-container:hover .caret{
+        border-top-color: var(--grey-7);
+        border-bottom-color: var(--grey-7);
+    }
+    .msgtype-selector-container:focus .caret {
+        margin-left:4px;
+        border-top:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-5);
+        border-bottom-color: var(--grey-5);
+    }
+    .msgtype-selector-container .open .caret, 
+    .msgtype-selector-container .open:focus .caret{
+        margin-left:4px;
+        border-top:0px dashed;
+        border-bottom:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-7);
+        border-bottom-color: var(--grey-7);
+    }
+    
+    .filter-shadow{
+        position:absolute;
+        top:41;
+        width:100%;
+        height: 16px;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+        z-index: 99;
+    }
+    .robot-feed-body{
+        height:100%;
+        overflow-y: auto;
+        background-color: var(--grey-0);
+        position:relative;
+    }
+    .robot-feed-body > ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .robot-feed-li-wrapper{
+        width:100%;
+        height:100%;
+    }
+
+    .robot-feed-raw>div{
+        height:100px;
+    }
+    .robot-feed-raw{
+        display: flex;
+    }
+    .robot-feed-raw .robot-feed-time-case{
+        width:19%;
+        height:100%;
+        padding-top:14px;
+        padding-right:14px;
+    }
+    .robot-feed-raw .robot-feed-content-case{
+        width:81%;
+    }
+    .robot-feed-date{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-5);
+    }
+    .robot-feed-time{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-6);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .robot-feed-content-case{
+        position:relative;
+        padding-left:25px;
+        cursor:pointer;
+        border-left: solid 2px var(--grey-3);
+        border-bottom: solid 1px var(--grey-3);
+
+        height:100%;
+        background-color: var(--grey-0);
+        position: relative;
+        display: flex;
+    }
+    .exclamation-mark{
+        position:absolute;
+        left:-10px;
+        top:40px;
+        width: 20px;
+        height: 20px;
+        border-radius:10px;
+        background-color: var(--ui-red);
+        z-index:99;
+        display: flex;
+    }
+    .robot-feed-dot-mark{
+        position:absolute;
+        left:-4px;
+        top:46px;
+        width: 8px;
+        height: 8px;
+        border-radius:4px;
+        background-color: var(--grey-5);
+        z-index:90;
+    }
+    .exclamation-mark>span{
+        margin:auto;
+        color: var(--grey-1);
+
+        font-family: SpoqaHanSans;
+        font-size: 15px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+    .robot-feed-content-info{
+        width:100%;
+        position: relative;
+    }
+    .robot-feed-content-type{
+        height:50%;
+        padding-top:25px;
+    }
+    
+    .issue-msgtype-txt{
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-8);
+    }
+    .normal-msgtype-txt{
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .robot-feed-content-desc{
+        height:50%;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .robot-feed-body-case{
+        height:100px;
+        background-color: var(--grey-0);
+    }
+
+
+</style>
+
+<div class="content-wrapper">
+    <div class="component-title">
+        <span >Robot Feed</span>
+        <div class="msgtype-selector-container">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <div href="#" 
+                    class="" 
+                    data-toggle="dropdown" 
+                    role="button" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                        <span data-ng-bind="selectedTypeName"></span>
+                        <div class="msgtype-select-btn">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu msgtype-select">
+                        <li ng-click="chooseAllType()">
+                            <a href="">
+                                <span>All</span>
+                            </a>
+                        </li>
+                        <!-- 반복 구간 -->
+                        <li ng-repeat="item in type_list" 
+                        ng-click="chooseType($index)">
+                            <a href="">
+                                <span data-ng-bind="item.display_name"></span>
+                            </a>
+                        </li>
+                        <!-- 반복 구간 end -->
+                    </ul>
+                </li>
+            </ul>
+        </div>  
+    </div>
+    <div class="robot-feed-body-case"> 
+        <div class="filter-shadow"></div>
+            <div class="robot-feed-body " id="robot-feed-area">
+                <ul class="">
+                    
+                    <!-- 반복구간 -->
+                    <li ng-repeat="item in feed" >
+                        <div class="robot-feed-li-wrapper">
+                            
+                            <div class="robot-feed-raw ">
+                                <div class="robot-feed-time-case ">
+                                    <div class="robot-feed-date">
+                                        <span data-ng-bind="getFormatDate(item.timestamp)"></span>
+                                    </div>
+                                    <div class="robot-feed-time">
+                                        <span data-ng-bind="getFormatTime(item.timestamp)"></span>
+                                    </div>
+                                </div>
+
+                                <div class="robot-feed-content-case" ng-click="selectFeed($index, $event)">
+                                    <div ng-if="item.type=='fault'" class="exclamation-mark">
+                                        <span>!</span>
+                                    </div>
+                                    <div class="robot-feed-dot-mark">
+                                    </div>
+
+                                    <div class="robot-feed-content-info" >
+                                        <div class="robot-feed-content-type">
+                                            <span ng-if="item.type=='fault'" class="issue-msgtype-txt" data-ng-bind="item.result.subtype"></span>
+                                            <span ng-if="item.type!='fault'" class="normal-msgtype-txt" data-ng-bind="item.result.subtype"></span>
+                                        </div>
+                                        <div class="robot-feed-content-desc">
+                                            <span data-ng-bind="getFeedDesc(item.result.data)"></span>
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                            
+                        </div>
+                    </li>
+                    <!-- 반복구간  종료-->
+        
+                    
+                    
+        
+        
+        
+                </ul>
+                
+                
+            </div>
+        
+    </div>
+</div>
+
+

@@ -1,0 +1,477 @@
+/*
+    컴포넌트 customising css
+*/
+.bo-content-title{
+    user-select: none;
+    margin-top:48px;
+    height:72px;
+    display: flex;
+    background-color: var(--grey-1);
+}
+.bo-content-title>span{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: var(--spacing-xl);
+
+    font-family: SpoqaHanSans;
+    font-size: 22px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.bo-content-case{
+    user-select: none;
+    width:100%;
+    display: flex;
+}
+.tree-btn-case>.tree-btn{
+    margin:auto;
+    min-width:60px;
+    width: 18%;
+    height: 70%;
+    border-radius: 4px;
+    border: solid 1px var(--grey-4);
+    background-color: var(--grey-0);
+    display: flex;
+
+    font-family: SpoqaHanSans;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--grey-7);
+}
+.tree-btn-case>.tree-btn>span{
+    margin:auto;
+}
+.tree-btn-case>.tree-btn:hover{
+    border: solid 1px var(--grey-9);
+    background-color: var(--grey-9);
+    color: var(--grey-0);
+}
+.bo-content-case>.left-case{
+    border: solid 1px var(--grey-4);
+    width:30%;
+    max-width: 400px;
+}
+.left-case>.tree-case-title{
+    height:42px;
+    display: flex;
+
+    font-family: SpoqaHanSans;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.left-case>.tree-case-title>span{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: var(--spacing-xl);
+}
+.left-case>.tree-case{
+    border-bottom: solid 1px var(--grey-4);
+    width:100%;
+    /* height:90%; */
+    padding: 5px 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.left-case>.tree-btn-case{
+    width:100%;
+    height:50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bo-content-case>.rigt-case{
+    border-top: solid 1px var(--grey-4);
+    border-bottom: solid 1px var(--grey-4);
+    border-right: solid 1px var(--grey-4);
+    width:70%;
+    padding: 20px;
+}
+.department-editor-btn-case{
+    position: absolute;
+    top:0px;
+    right:0px;
+    height:42px;
+    display: flex;
+}
+.department-editor-btn-case>.editor-btn{
+    margin:auto;
+    min-width:100px;
+    width: 18%;
+    height: 70%;
+    border-radius: 4px;
+    border: solid 1px var(--grey-4);
+    background-color: var(--grey-0);
+    display: flex;
+
+    font-family: SpoqaHanSans;
+    font-size: 14px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--grey-7);
+}
+
+.department-editor-btn-case>.editor-btn>span{
+    margin:auto;
+}
+.department-editor-btn-case>.editor-btn>.iasc{
+    margin:auto;
+    font-size: 35px;
+    padding-top:3px;
+    
+}
+.department-editor-btn-case>.editor-btn>.idesc{
+    margin:auto;
+    font-size: 35px;
+    transform: translate(0,-13px)
+    
+}
+.department-editor-btn-case>.editor-btn:hover{
+    border: solid 1px var(--grey-9);
+    background-color: var(--grey-9);
+    color: var(--grey-0) !important;
+}
+/* .department-editor-btn-case>.editor-btn>i:hover{
+    color: var(--grey-0);
+} */
+
+
+
+
+
+.rigt-case>.doctor-editor-case{
+    width:100%;
+    max-width: 850px;
+    border: solid 1px var(--grey-4);
+    border-radius: 15px;
+}
+
+.editor-title{
+    height:42px;
+    display: flex;
+    /* margin-bottom: 15px; */
+
+    font-family: SpoqaHanSans;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.45;
+    letter-spacing: normal;
+    color: var(--grey-7);
+
+}
+.editor-title>span{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: auto;
+    margin-left: var(--spacing-xl);
+}
+
+
+
+
+/* .bo-editor-show{
+    display: initial;
+}
+
+.bo-editor-hide{
+    display: none;
+} */
+#editor-content{
+    width:100%;
+    display: none;
+}
+.editor-case{
+    width:100%;
+    max-width: 850px;
+    margin-bottom: 15px;
+    border: solid 1px var(--grey-4);
+    border-radius: 10px;
+    position: relative;
+    padding:15px;
+}
+.editor-item{
+    padding: 10px;
+    display: flex;
+    width:100%;
+}
+.editor-item>.editor-item-title{
+    background-color: var(--primary-1);
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--grey-0);
+
+    border-radius: 4px;
+    height: 30px;
+    width:20%;
+    max-width: 100px;
+    display: flex;
+}
+.editor-item-title>span{
+    margin:auto;
+}
+.editor-item-input{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    width:100%;
+    max-width: 600px;
+
+    position: relative;
+}
+
+.editor-item-input-case{
+    width:100%;
+    margin:auto;
+    display: flex;
+}
+.editor-item-input-case>input{
+    width:80%;
+    display: flex;
+
+    padding-left: 20px;
+    height: 30px;
+
+    font-family: SpoqaHanSans;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+.editor-item-input-btn{
+    width:30px;
+    height:30px;
+    margin-left:10px;
+
+    background-color: var(--primary-1);
+    font-family: SpoqaHanSans;
+    font-size: 18px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--grey-0);
+
+    border-radius: 15px;
+    display: flex;
+}
+.editor-item-input-btn>span{
+    margin: auto;
+}
+
+.editor-item-input>input{
+    padding-left: 20px;
+    height: 30px;
+    width:100%;
+    margin-right:auto;
+
+    font-family: SpoqaHanSans;
+    font-size: 20px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+.editor-item-input-desc{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    width:80%;
+    max-width: 600px;
+}
+.editor-item-input-desc>textarea{
+    padding: 10px;
+    resize: none;
+    height: 200px;
+    width:100%;
+    margin-right:auto;
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+.editor-item-image{
+    width:100%;
+    height:100%;
+}
+
+
+#editor-item-submit{
+    margin:auto;
+    width: 120px;
+    height: 40px;
+
+    border-radius: 4px;
+    border: solid 1px var(--grey-4);
+    background-color: var(--grey-0);
+    display: flex;
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: var(--grey-7);
+}
+
+
+.editor-item-last{
+    padding: 10px;
+    display: flex;
+    width:100%;
+}
+.editor-item-last-case{
+    margin: auto;
+    display: flex;
+}
+.editor-item-protec-btn{
+    margin: auto;
+    padding-left: 16px;
+    font-family: SpoqaHanSans;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.editor-item-protec-btn>input{
+    width:30px;
+    margin-right:10px;
+}
+#editor-item-submit:hover{
+    border: solid 1px var(--grey-9);
+    background-color: var(--grey-9);
+    color: var(--grey-0);
+}
+#editor-item-submit:active{
+    border: solid 1px var(--primary-1);
+    background-color: var(--primary-1);
+    color: var(--grey-0);
+}
+.editor-item-additional-desc{
+    padding-left: 16px;
+    font-family: SpoqaHanSans;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+
+
+.preview{
+    padding-left: 16px;
+    font-family: SpoqaHanSans;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+
+.photo-state{
+    display: flex;
+}
+.crt-photo{
+    width:30%;
+}
+.crt-photo>div{
+    display: flex;
+}
+.crt-photo>div>span{
+    margin: auto;
+    padding-left: 16px;
+    font-family: SpoqaHanSans;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.crt-photo>div>img{
+    height:130px;
+    margin: auto;
+}
+.preview-photo{
+    width:30%;
+}
+.preview>img{
+    height:130px;
+    margin: auto;
+}
+.preview-photo>div{
+    display: flex;
+}
+.preview-photo>div>span{
+    margin: auto;
+    padding-left: 10px;
+    font-family: SpoqaHanSans;
+    font-size: 15px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}

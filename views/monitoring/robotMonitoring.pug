@@ -1,0 +1,123 @@
+extends ../header.pug
+block subnav
+    //- stylesheet        
+    link(rel="stylesheet", href="/static/css/robotMonitoring.css")
+    
+    div(id="subnavRobotMonitoring" class="subnav" ng-controller="suvnavCtrl")
+        div(class="subnav-container")
+            div(id="view-btn")
+                div(id="view-btn-case")
+                    div(
+                        id="view-btn-map" 
+                        ng-click="onClickMapView()"
+                        ng-class="{ 'view-btn-selected': isMapViewOn, 'view-btn-origin': !isMapViewOn}") 
+                        span Map View
+                    div(
+                        id="view-btn-camera" 
+                        ng-click="onClickCameraView()"
+                        ng-class="{ 'view-btn-selected': isCameraViewOn, 'view-btn-origin': !isCameraViewOn}") 
+                        span Camera View
+            div(class="subnav-title")
+                span() 로봇 모니터링
+            div(class="vertical-divider")
+
+            div(class="zone-selector-container" )
+                ul(class="nav navbar-nav")
+                    li(class="dropdown")
+                        div(
+                            href="#" 
+                            class="zone-select-box" 
+                            data-toggle="dropdown" 
+                            role="button" 
+                            aria-haspopup="true" 
+                            aria-expanded="false"
+                            )
+                            span(class="" data-ng-bind="getCrtZoneName($root.dataShare.crt_zone)")
+                            div(class="zone-select-btn ")
+                                span(class="caret")
+                        ul(class="dropdown-menu")
+                            li(
+                                ng-repeat="item in $root.dataShare.zonelist" 
+                                ng-click="chooseZone($index)")
+                                a(href="#")
+                                    span(data-ng-bind="item.name")
+            div(class="arrow-divider")
+                i(class="fa fa-angle-right" aria-hidden="true")
+            div(class="robot-selector" ng-if="$root.isRobotReady==true")
+                div(class="robot-selector-allbtn selected" ng-click="chooseAllRobot($event)")
+                    span All
+                div(class="robot-selector-robotbtn-case" ng-repeat="item in $root.dataShare.robotlist" )
+                    div(class="robot-selector-robotbtn-icon")
+                        img(alt="" ng-src="{{item.selector_profile.remote}}" ng-if="item.finalstate==2")
+                        img(alt="" ng-src="{{item.selector_profile.fault}}" ng-if="item.finalstate==1")
+                        img(alt="" ng-src="{{item.selector_profile.normal}}" ng-if="item.finalstate==0")
+                        img(alt="" ng-src="{{item.selector_profile.disconnected}}" ng-if="item.finalstate==3")
+                        img(alt="" ng-src="{{item.selector_profile.disconnected}}" ng-if="item.finalstate==undefined")
+                    div(class="robot-selector-robotbtn-name " ng-click="chooseRobot($index,$event)")
+                        img(alt="" 
+                            ng-if="item.id==$root.dataShare.crt_robot.id" 
+                            src="/static/imgs/icons/check-selected-pin.svg")
+                        span(data-ng-bind="item.name")
+
+        //- div(class="subnav-container")
+        //-     div(class="subnav-title")
+        //-         span() Robot Monitoring
+        //-     div(class="vertical-divider")
+        //-     div(class="zone-selector-container" )
+        //-         ul(class="nav navbar-nav")
+        //-             li(class="dropdown")
+        //-                 div(
+        //-                     href="#" 
+        //-                     class="" 
+        //-                     data-toggle="dropdown" 
+        //-                     role="button" 
+        //-                     aria-haspopup="true" 
+        //-                     aria-expanded="false"
+        //-                     )
+        //-                     span(data-ng-bind="getCrtZoneName($root.dataShare.crt_zone)")
+        //-                     div(class="zone-select-btn")
+        //-                         span(class="caret")
+        //-                 ul(class="dropdown-menu")
+        //-                     li(
+        //-                         ng-repeat="item in $root.dataShare.zonelist" 
+        //-                         ng-click="chooseZone($index)")
+        //-                         a(href="#")
+        //-                             span(data-ng-bind="item.name")
+        //-     div(class="arrow-divider")
+        //-         i(class="fa fa-angle-right" aria-hidden="true")
+        //-     div(class="robot-selector" ng-if="$root.dataShare.robotlist.length!=0")
+        //-         div(class="selected" ng-click="chooseAllRobot($event)")
+        //-             span All
+        //-         div(class="submenu-robot-btn" ng-repeat="item in $root.dataShare.robotlist" ng-click="chooseRobot($index,$event)")
+        //-             span(class="vertical-divider")
+        //-             span(data-ng-bind="item.name")
+
+block content
+    div(class="container-fluid main-container-fluid")
+        div(class="raw")
+            //- map view 모니터링
+            div(id="mapview" class="col-lg-8 content-container component-open")
+                map-view(mode="dynamic" height="" title="false" planner="true")
+
+            //- camera view
+            div(id="camera-view" class="col-lg-8 content-container component-close")
+                camera-view( option='{}')
+                
+            //- robot list
+            div(id="robot-list" class=" col-lg-4 content-container component-open")
+                robot-list(option='{}')
+
+            div(id="robot-detail" class=" col-lg-4 component-close" style="padding:0px;")
+                //- robot status
+                div(class="content-container")
+                    robot-status(option='{}')
+                
+                //- robot feed
+                div(class="content-container")
+                    robot-feed(option='{}')
+
+            
+                
+
+block scriptadding
+    script(type="text/javascript", src="/static/js/robotMonitoring.js")

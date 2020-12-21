@@ -1,0 +1,255 @@
+/*
+    컴포넌트 customising css
+*/
+.controller-robot-selector{
+    display: flex;
+    
+}
+
+.robot-selector-case{
+    width:165px;
+    height:56px;
+    position: relative;
+    margin-right: 24px;
+    
+}
+.robot-selector-iconcase{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    z-index: 1;
+}
+.iconcase-ring-select{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    border: solid 2px var(--ui-red);
+}
+.iconcase-ring-unselect{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    /* border: solid 2px var(--ui-red); */
+}
+.iconcase-status{
+    position: absolute;
+    right:0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: solid 2px var(--grey-2);
+    background-color: #05c985;
+}
+.controller-iconcase-status-on{
+    position: absolute;
+    right:0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: solid 2px var(--grey-2);
+    background-color: #05c985;
+}
+.controller-iconcase-status-auto{
+    position: absolute;
+    right:0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: solid 2px var(--grey-2);
+    background-color: var(--ui-red);
+}
+.controller-iconcase-status-off{
+    position: absolute;
+    right:0px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    border: solid 2px var(--grey-2);
+    background-color: var(--grey-5);
+}
+
+
+
+
+
+
+.iconcase-iconimg{
+    position: absolute;
+    width: 56px;
+    height: 56px;
+    
+}
+.iconcase-iconimg>img{
+    width:56px;
+    height:56px;
+}
+.robot-selector-nametag-unselect{
+    position: absolute;
+    display: flex;
+    width:165px;
+    height:40px;
+    border-radius: 20px;
+    border: solid 1px var(--grey-5);
+    margin-top:8px;
+}
+.robot-selector-nametag-unselect>span{
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left:64px;
+    pointer-events: none;
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-6);
+}
+.robot-selector-nametag-select{
+    position: absolute;
+    display: flex;
+    width:165px;
+    height:40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px 0 rgba(107, 128, 152, 0.2);
+    background-color: var(--primary-1);
+    margin-top:8px;
+}
+.robot-selector-nametag-select>span{
+    margin-top:auto;
+    margin-bottom:auto;
+    margin-left:64px;
+    /* pointer-events: none; */
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: var(--grey-0);
+}
+
+
+
+
+
+
+
+
+
+.controller-set{
+    overflow: hidden;
+}
+#robot-status-sub{
+    position: absolute;
+    top: 22px;
+    left: 50%;
+}
+#robot-remote-panel{
+    position: absolute;
+    bottom: 0px;
+    width:0px;
+    height:0px;
+    left: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Add a color to the cancel button */
+  .cancelbtn {
+    background-color: #ccc;
+    color: black;
+  }
+  
+  /* Add a color to the delete button */
+  .deletebtn {
+    background-color: #f44336;
+  }
+  
+  /* Add padding and center-align text to the container */
+  .container {
+    padding: 16px;
+    text-align: center;
+  }
+  
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #474e5d;
+    padding-top: 50px;
+  }
+  
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+  
+  /* Style the horizontal ruler */
+  hr {
+    border: 1px solid #f1f1f1;
+    margin-bottom: 25px;
+  }
+   
+  /* The Modal Close Button (x) */
+  .close {
+    position: absolute;
+    right: 35px;
+    top: 15px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #f1f1f1;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #f44336;
+    cursor: pointer;
+  }
+  
+  /* Clear floats */
+  .clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Change styles for cancel button and delete button on extra small screens */
+  @media screen and (max-width: 300px) {
+    .cancelbtn, .deletebtn {
+       width: 100%;
+    }
+  }
+
+

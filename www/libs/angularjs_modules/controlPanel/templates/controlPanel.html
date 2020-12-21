@@ -1,0 +1,1072 @@
+<style>
+    
+    .controlPanel-component-body-custom{
+        width:100%;
+        height:25.4%;
+        position: relative;
+        pointer-events: none;
+        transition: transform 1s ease-out;
+        display: flex;
+
+    }
+    .controlPanel-component-body-custom>img{
+        width:86%;
+        margin-left:auto;
+        margin-right:auto;
+        z-index: 50;
+    }
+
+    .panelOff-animation{
+        transform: translate(0%, -46%);
+        transition: .8s;
+    }
+    .panelOn-animation{
+        transform: translate(0%, -100%);
+        transition: .8s;
+    }
+
+    .controlPanel-status-lamp{
+        width:32.2%;
+        height:21%;
+        position: absolute;
+        top:3.8%;
+        left:33.9%;
+        display: flex;
+    }
+    .controlPanel-status-lamp-on{
+        background-color: #00b26c;
+        transition: .6s;
+
+    }
+    .controlPanel-status-lamp-off{
+        background-color: grey;
+        transition: .6s;
+    }
+
+    .controlPanel-status-lamp>span{
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-0);
+        margin:auto;
+    }
+
+
+
+
+    .controlPanel-head-remote{
+        width:28%;
+        height:49%;
+        z-index: 80;
+        position: absolute;
+        top:46%;
+        left:15.4%;
+    }
+
+    .controlPanel-mobile-remote{
+        width:13%;
+        height:58%;
+        z-index: 80;
+        position: absolute;
+        top:39%;
+        left:63%;
+    }
+    .joypad-txt{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .controlPanel-head-remote-top{
+        width:100%;
+        height:45%;
+        display: flex;
+    }
+    .controlPanel-head-remote-top>.joypad-txt-title{
+        margin-right: 10%;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .controlPanel-head-remote-top>.joypad-key{
+        margin-right: 3%;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .controlPanel-head-remote-top>.joypad-txt-title{
+        margin-right: 3%;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .controlPanel-head-remote-top>img{
+        height:100%;
+    }
+    
+    .controlPanel-head-remote-bottom{
+        width:100%;
+        height:45%;
+        display: flex;
+    }
+    .controlPanel-head-remote-bottom>.joypad-key{
+        margin-right: 3%;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    
+    .controlPanel-head-remote-bottom>.joypad-txt-title{
+        margin-right: 3%;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .controlPanel-head-remote-bottom>img{
+        height:100%;
+    }
+    .controlPanel-head-remote-gap{
+        height:10%;
+    }
+
+
+    .controlPanel-mobile-remote-top{
+        display: flex;
+        height:33.3%;
+    }
+    .controlPanel-mobile-remote-mid{
+        display: flex;
+        height:33.3%;
+        
+    }
+    .controlPanel-mobile-remote-bottom{
+        display: flex;
+        height:33.3%;
+        
+    }
+    .controlPanel-mobile-remote-gap{
+        width:50%;
+    }
+    .controlPanel-mobile-remote-top>img{
+        margin:auto;
+        height:100%;
+    }
+    .controlPanel-mobile-remote-mid>img{
+        margin:auto;
+        height:100%;
+    }
+    .controlPanel-mobile-remote-bottom>img{
+        margin:auto;
+        height:100%;
+    }
+
+
+    
+    .controlPanel-mobile-remote-txt{
+        position: absolute;
+        right:18%;
+        top:55%;
+        z-index: 99;
+
+    }
+    .joypad-key{
+        background-color: var(--grey-8);
+        height:100%;
+        border-radius: 8%;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-2);
+
+        pointer-events: auto;
+
+    }
+    .joypad-key-shift{
+        min-width: 55%;
+        display: flex;
+    }
+    .joypad-key-shift>span{
+        margin:auto;
+    }
+    
+    .joypad-txt-plus{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:3%;
+    }
+    .joypad-txt-comma{
+        margin-top:auto;
+        margin-bottom:1%;
+        margin-right:2%;
+        margin-left:2%;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .controlPanel-switch{
+        position: absolute;
+        top:25%;
+        height:15%;
+        left: 25%;
+        width: 50%;
+        z-index: 99;
+        display: flex;
+    }
+    .controlPanel-switch-box{
+        margin: auto;
+        height:100%;
+        width: 100%;
+        display: flex;
+    }
+    .controlPanel-switch-box>span{
+        margin: auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-5);
+    }
+    
+    .controlPanel-switch-btn-case{
+        margin: auto;
+        width:8%;
+        height: 100%;
+        display: flex;
+        pointer-events: auto;
+        position: relative;
+    }
+
+    .controlPanel-switch-btn-rail{
+        position: absolute;
+        width:100%;
+        height: 30%;
+        margin-top:25%;
+        border-radius: 8px;
+        background-color: var(--grey-8);
+    }
+    .controlPanel-switch-btn{
+        position: absolute;
+        margin-top:10%;
+        width:48%;
+        height: 65%;
+        border-radius: 100%;
+    }
+    .switch-btn-off-animation{
+        background-color: var(--grey-5);
+        transform: translateX(120%);
+        transition: .4s;
+
+    }
+    .switch-btn-on-animation{
+        background-color: #00b26c;
+        transform: translateX(0px);
+        transition: .4s;
+    }
+    
+
+
+
+
+    /* new */
+    .remote-panel{
+        position: relative;
+        z-index: 11;
+        width: 656px;
+        height: 300px;
+
+        top:0px;
+        /* transform: translate(-50%, -64px); */
+    }
+    .remote-panel-on{
+        transition: .4s;
+        transform: translate(-50%, -222px);
+    }
+    .remote-panel-off{
+        transition: .4s;
+        transform: translate(-50%, -64px);
+    }
+
+
+
+
+    .remote-panel-case{
+        width: 100%;
+        height: 100%;
+        
+        /* padding: 16px 24px 24px; */
+        border-radius: 16px;
+        background-color: rgba(33, 37, 41, 0.3);
+    }
+    .remote-panel-top-case{
+        width: 100%;
+        height: 64px;
+        display: flex;
+    }
+    .remote-panel-title{
+        width: 70%;
+        height: 64px;
+        display: flex;
+        padding-left: var(--spacing-xl);
+    }
+    .remote-panel-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-right:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .remote-panel-main-btn-case{
+        width: 30%;
+        height: 64px;
+        display: flex;
+    }
+    .remote-panel-main-btn{
+        width: 128px;
+        height: 32px;
+        margin:auto;
+        border-radius: 16px;
+        display: flex;
+        
+    }
+    .remote-panel-main-btn-off{
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .remote-panel-main-btn-try{
+        border: solid 1px rgba(38, 88, 255, 0.3);
+        background-color: rgba(38, 88, 255, 0.2);
+    }
+    .remote-panel-main-btn-on{
+        border: solid 1px rgba(35, 183, 107, 0.3);
+        background-color: rgba(35, 183, 107, 0.2);
+        
+    }
+    .remote-panel-main-btn>div{
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .panel-btn-on{
+        color: var(--ui-green);
+    }
+    .panel-btn-charging-on{
+        color: var(--grey-0);
+    }
+    .panel-btn-off{
+        color: var(--grey-0);
+    }
+    .remote-panel-bottom-case{
+        height:135px;
+        width:100%;
+        display: flex;
+    }
+    .remote-panel-bt-left-case{
+        width:25%;
+        height:100%;
+        /* padding-top: var(--spacing-s); */
+    }
+    .remote-panel-bt-center-case{
+        width:45%;
+        height:100%;
+    }
+    .remote-panel-bt-right-case{
+        width:30%;
+        height:100%;
+    }
+    .remote-panel-mode-btn{
+        width: 136px;
+        height: 48px;
+        margin:auto;
+        display: flex;
+    }
+    .remote-panel-mode-on{
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.1);
+        background-color: rgba(33, 37, 41, 0.2);
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .remote-panel-mode-off{
+        border-radius: 4px;
+        border: none;
+        background-color: none;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .remote-panel-mode-btn-txt{
+        width:85%;
+        height:100%;
+        display: flex;
+    }
+    .remote-panel-mode-btn-txt>span{
+        margin:auto;
+    }
+    .remote-panel-mode-btn-arrow{
+        width:15%;
+        height:100%;
+        display: flex;
+    }
+    .remote-panel-mode-btn-arrow>i{
+        margin:auto;
+    }
+    .remote-panel-cmd-case{
+        width:100%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.1);
+        background-color: rgba(33, 37, 41, 0.2);
+        display: flex;
+    }
+    .remote-panel-cmd-speak-case{
+        width:100%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.1);
+        background-color: rgba(33, 37, 41, 0.2);
+    }
+    .move-mode-btn-case{
+        margin: auto;
+        width:48%;
+        height:100%;
+    }
+    .move-mode-btn-case-top{
+        height:38%;
+        width:100%;
+        display: flex;
+        padding-top: 10px;
+    }
+    .move-mode-btn-case-mid{
+        height:38%;
+        width:100%;
+        display: flex;
+    }
+    .move-mode-btn-case-btm{
+        height:24%;
+        width:100%;
+        display: flex;
+    }
+    .move-mode-btn-case-btm>span{
+        margin:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .move-key-btn{
+        margin:auto;
+        display: flex;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .move-key-btn>i{
+        margin:auto;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .snapshot-case{
+        margin:auto;
+        width:65%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.1);
+        background-color: rgba(33, 37, 41, 0.2);
+    }
+    .snapshot-case-top{
+        width:100%;
+        height:70%;
+        padding: 8px;
+    }
+    .snapshot-case-btm{
+        width:100%;
+        height:30%;
+        /* padding-top: 0px;
+        padding-left: 8px;
+        padding-bottom: 8px;
+        padding-right: 8px;
+        border-radius: 4px; */
+        padding: 0px 8px 8px 8px;
+        
+    }
+    .snapshot-btn{
+        width:100%;
+        height:100%;
+        display: flex;
+
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .snapshot-btn:hover{
+        opacity: 0.3;
+    }
+    .snapshot-btn>span{
+        margin:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .snapshot-place{
+        width:100%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+    }
+    .snapshot-place>img{
+        width:100%;
+        height:100%;
+    }
+    .remote-panel-speak-case-top{
+        width:100%;
+        height:70%;
+
+        padding: 8px 16px 8px 16px;
+
+    }
+    .remote-panel-speak-case-top>textarea{
+        width:100%;
+        height:100%;
+
+        padding: 5px;
+        resize: none;
+        
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .remote-panel-speak-case-btm{
+        width:100%;
+        height:30%;
+        display: flex;
+
+        padding: 0px 16px 8px 16px;
+    }
+    .speak-btn{
+        margin:auto;
+        display: flex;
+        width:30%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .speak-btn:hover{
+        opacity: 0.3;
+    }
+    .speak-btn>span{
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .remote-panel-cmd-charging-case{
+        width:100%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.1);
+        background-color: rgba(33, 37, 41, 0.2);
+
+        display: flex;
+    }
+    .remote-panel-charging-case-left{
+        width:55%;
+        height:100%;
+    }
+    .remote-panel-charging-status-title{
+        width:100%;
+        height:30%;
+        display: flex;
+    }
+    .remote-panel-charging-status-title>span{
+        margin:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.43;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-5);
+    }
+    .remote-panel-charging-status{
+        width:100%;
+        height:35%;
+        display: flex;
+    }
+    .remote-panel-docking-status{
+        width:100%;
+        height:35%;
+        display: flex;
+    }
+    .remote-panel-charging-status>span{
+        /* margin-left:auto;
+        margin-right:auto;
+        margin-top:10%; */
+        margin:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-0);
+    }
+    .remote-panel-docking-status>span{
+        /* margin-left:auto;
+        margin-right:auto;
+        margin-top:10%; */
+        margin:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        text-align: center;
+        color: var(--grey-0);
+    }
+    .remote-panel-charging-case-right{
+        width:45%;
+        height:100%;
+        padding:10px;
+    }
+    .remote-panel-charging-btn-case{
+        width:100%;
+        height:28.3%;
+        margin-bottom: 10px;
+    }
+    .charging-btn{
+        display: flex;
+        width:100%;
+        height:100%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .charging-btn:hover{
+        opacity: 0.3;
+    }
+    .charging-btn>span{
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+    .navigation-btn-case{
+        margin:auto;
+        width:40%;
+        height:100%;
+    }
+    .navigation-btn{
+        display: flex;
+        width:100%;
+        height:20%;
+        margin-top: 4.5%;
+
+        border-radius: 4px;
+        border: solid 1px rgba(248, 249, 250, 0.3);
+        background-color: rgba(248, 249, 250, 0.2);
+    }
+    .navigation-btn:hover{
+        opacity: 0.3;
+    }
+    .navigation-btn>span{
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.25;
+        letter-spacing: normal;
+        color: var(--grey-0);
+    }
+
+</style>
+<div class="remote-panel ">
+    <div class="remote-panel-case"
+        ng-class="{ 'remote-panel-on': isRemoteOn, 'remote-panel-off': !isRemoteOn}">
+        <div class="remote-panel-top-case ">
+            <div class="remote-panel-title">
+                <span>컨트롤러</span>
+            </div>
+            <div class="remote-panel-main-btn-case">
+                <div class="remote-panel-main-btn"  
+                    ng-class="{ 'remote-panel-main-btn-on': isRemoteOn, 'remote-panel-main-btn-off': !isRemoteOn}"
+                    ng-click="onRemoteBtn($event)">
+                    <div>
+                        <span >수동모드</span>
+                        <span class="panel-btn-on" ng-if="isRemoteOn"> ON</span>
+                        <span class="panel-btn-off" ng-if="!isRemoteOn"> OFF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="remote-panel-bottom-case">
+            <div class="remote-panel-bt-left-case">
+                <div class="remote-panel-mode-btn"
+                    ng-class="{ 'remote-panel-mode-on': isMoveModeOn, 'remote-panel-mode-off': !isMoveModeOn}"
+                    ng-click="onMoveModeBtn($event)">
+                    <div class="remote-panel-mode-btn-txt">
+                        <span>이동 명령</span>
+                    </div>
+                    <div class="remote-panel-mode-btn-arrow">
+                        <i class="fa fa-caret-right fa-lg"
+                            ng-if="isMoveModeOn"></i>
+                    </div>
+                </div>
+                <div class="remote-panel-mode-btn"
+                    ng-click="onSpeakModeBtn($event)"
+                    ng-class="{ 'remote-panel-mode-on': isSpeakModeOn, 'remote-panel-mode-off': !isSpeakModeOn}">
+                    <div class="remote-panel-mode-btn-txt">
+                        <span>발화 명령</span>
+                    </div>
+                    <div class="remote-panel-mode-btn-arrow">
+                        <i class="fa fa-caret-right fa-lg"
+                            ng-if="isSpeakModeOn"></i>
+                    </div>
+                </div>
+                <div class="remote-panel-mode-btn"
+                    ng-click="onChargingModeBtn($event)"
+                    ng-class="{ 'remote-panel-mode-on': isChargingModeOn, 'remote-panel-mode-off': !isChargingModeOn}">
+                    <div class="remote-panel-mode-btn-txt">
+                        <span>충전 명령</span>
+                    </div>
+                    <div class="remote-panel-mode-btn-arrow">
+                        <i class="fa fa-caret-right fa-lg"
+                            ng-if="isChargingModeOn"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="remote-panel-bt-center-case ">
+                <div class="remote-panel-cmd-case "
+                    ng-if="isMoveModeOn">
+                    <div class="move-mode-btn-case ">
+                        <div class="move-mode-btn-case-top ">
+                            <div id="move-key-btn-up" class="move-key-btn">
+                                <i class="fa fa-caret-up fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="move-mode-btn-case-mid ">
+                            <div id="move-key-btn-left" class="move-key-btn">
+                                <i class="fa fa-caret-left fa-lg"></i>
+                            </div>
+                            <div id="move-key-btn-down" class="move-key-btn">
+                                <i class="fa fa-caret-down fa-lg"></i>
+                            </div>
+                            <div id="move-key-btn-right" class="move-key-btn">
+                                <i class="fa fa-caret-right fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="move-mode-btn-case-btm ">
+                            <span>Move</span>
+                        </div>
+                    </div>
+                    <div class="navigation-btn-case ">
+                        <div 
+                            id="move-to-btn" 
+                            ng-click="onMoveToBtn($event)"
+                            class="navigation-btn">
+                            <span data-ng-bind="moveToBtnTxt"></span>
+                        </div>
+                        <div 
+                            id="move-to-cancel" 
+                            ng-click="onMoveCancel($event)"
+                            class="navigation-btn">
+                            <span>이동 중지</span>
+                        </div>
+                        <div 
+                            id="init-pose-btn" 
+                            ng-click="onInitPoseBtn($event)"
+                            class="navigation-btn">
+                            <span data-ng-bind="initPoseBtnTxt"></span>
+                        </div>
+                        <div 
+                            id="localization-falut-set" 
+                            ng-click="onLocalizationFaultResetBtn($event)"
+                            class="navigation-btn">
+                            <span>위치에러 초기화</span>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+
+                <div class="remote-panel-cmd-speak-case"
+                    ng-if="isSpeakModeOn">
+                    <div class="remote-panel-speak-case-top">
+                        <textarea 
+                        name="speak" id="speak" maxlength="60" placeholder="텍스트를 입력해주세요."></textarea>
+                    </div>
+                    <div class="remote-panel-speak-case-btm ">
+                        <div 
+                            class="speak-btn "
+                            ng-click="onSpeakCmd($event)">
+                            <span>Speak</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="remote-panel-cmd-charging-case "
+                    ng-if="isChargingModeOn">
+
+                    <div class="remote-panel-charging-case-left">
+                        <div class="remote-panel-charging-status-title">
+                            <span>충전 상태</span>
+                        </div>
+                        <div class="remote-panel-charging-status ">
+                            <span ng-if="chargingStatus==true">충전중...</span>
+                            <span ng-if="chargingStatus==false">충전해제 상태</span>
+                        </div>
+                        <div class="remote-panel-docking-status ">
+                            <span ng-if="dockingActionStatus==true">도킹 시도중...</span>
+                            <span ng-if="ejectingActionStatus==true">도킹해제 시도중...</span>
+                        </div>
+                    </div>
+                    <div class="remote-panel-charging-case-right ">
+                        <div class="remote-panel-charging-btn-case">
+                            <div 
+                                class="charging-btn "
+                                ng-click="onDocking($event)">
+                                <span>충전 도킹</span>
+                            </div>
+                        </div>
+                        <div class="remote-panel-charging-btn-case">
+                            <div 
+                                class="charging-btn "
+                                ng-click="onDockingCancel($event)">
+                                <span>도킹 취소</span>
+                            </div>
+                        </div>
+                        <div class="remote-panel-charging-btn-case">
+                            <div 
+                                class="charging-btn "
+                                ng-click="onUndocking($event)">
+                                <span>도킹 해제</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="remote-panel-bt-right-case">
+                <div class="snapshot-case">
+                    <div class="snapshot-case-top ">
+                        <div 
+                            id="robot-snapshot" 
+                            class="snapshot-place"
+                            ng-click="onPopup($event)">
+                            <img ng-src="{{snapshotSrc}}" alt="" ng-if="snapshotSrc!=undefined">
+                        </div>
+                    </div>
+                    <div class="snapshot-case-btm ">
+                        <div 
+                            class="snapshot-btn"
+                            ng-click="onSnapshotBtn($event)">
+                            <span>Snapshot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+    <div 
+        class="controlPanel-component-body-custom"
+        ng-class="{ 'panelOn-animation': isNetworkOn, 'panelOff-animation': !isNetworkOn}"> 
+        <img class="" src="/static/imgs/icons/controller-bg.png" alt="">
+        <div 
+            class="controlPanel-status-lamp"
+            ng-class="{ 'controlPanel-status-lamp-on': isNetworkOn, 'controlPanel-status-lamp-off': !isNetworkOn}"> 
+            <span data-ng-bind="$root.dataShare.crt_robot.name"></span>
+        </div>
+
+
+        <div class="controlPanel-switch ">
+            <div class="controlPanel-switch-box">
+                <span>원격조종 네트워크 연결</span>
+                <div class="controlPanel-switch-btn-case" ng-click="onClickNetworkConnect($event)">
+                    <div class="controlPanel-switch-btn-rail"></div>
+                    <div 
+                        class="controlPanel-switch-btn "
+                        ng-class="{ 'switch-btn-on-animation': isNetworkOn, 'switch-btn-off-animation': !isNetworkOn}"
+                    ></div>
+                </div>
+                <span style="padding-left:10px;">원격조종 상태변경</span>
+                <div class="controlPanel-switch-btn-case" ng-click="onClickManualBtn($event)">
+                    <div class="controlPanel-switch-btn-rail"></div>
+                    <div 
+                        class="controlPanel-switch-btn "
+                        ng-class="{ 'switch-btn-on-animation': isManualOn, 'switch-btn-off-animation': !isManualOn}"
+                    ></div>
+                </div>
+            </div>
+            
+            
+        </div>
+
+        <div class="controlPanel-head-remote ">
+            <div class="controlPanel-head-remote-top ">
+                <div 
+                    class="joypad-key joypad-key-shift"
+                    ng-click="onMoveToBtn($event)">
+                    <span data-ng-bind="moveToBtnTxt"></span>
+                </div>
+                <div 
+                    class="joypad-key joypad-key-shift"
+                    ng-click="onMoveCancel($event)">
+                    <span>이동중지</span>
+                </div>
+            </div>
+
+            <div class="controlPanel-head-remote-gap"></div>
+
+            <div class="controlPanel-head-remote-bottom ">
+                <div  
+                    class="joypad-key joypad-key-shift"
+                    ng-click="onInitPoseBtn($event)">
+                    <span data-ng-bind="initPoseBtnTxt"></span>
+                </div>
+                <div 
+                    class="joypad-key joypad-key-shift"
+                    ng-click="onManualPatrolBtn($event)">
+                    <span data-ng-bind="manualPatrolBtnTxt"></span>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="controlPanel-mobile-remote">
+            <div class="controlPanel-mobile-remote-top ">
+                <img id="key-mobile-up" src="/static/imgs/icons/control-go.png" alt="">
+            </div>
+            <div class="controlPanel-mobile-remote-mid ">
+                <img id="key-mobile-left" src="/static/imgs/icons/control-left.png" alt="">
+                <div class="controlPanel-mobile-remote-gap"></div>
+                <img id="key-mobile-right" src="/static/imgs/icons/control-right.png" alt="">
+            </div>
+            <div class="controlPanel-mobile-remote-bottom">
+                <img id="key-mobile-down" src="/static/imgs/icons/control-back.png" alt="">
+            </div>
+        </div>
+
+        <div class="controlPanel-mobile-remote-txt">
+            <span class="joypad-txt">move</span>
+        </div>
+    </div> -->
+</div>
+
+
+

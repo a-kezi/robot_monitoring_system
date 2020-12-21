@@ -1,0 +1,313 @@
+extends ../header.pug
+
+block content
+    //- stylesheet        
+    link(rel="stylesheet", href="/static/libs/bootstrap-treeview-1.2.0/bootstrap-treeview.min.css")
+    link(rel="stylesheet", href="/static/css/backoffice.css")
+    .bo-content-title
+        span() 마산의료원 Backoffice
+    .bo-content-case(ng-controller="backofficeCtrl")
+        .left-case
+            .tree-case-title
+                span() Key tree
+            .tree-case
+                #tree
+            .tree-btn-case
+                .tree-btn(ng-click="onAddDepartment()") 
+                    span 부서 추가
+                .tree-btn(ng-click="onAddDoctor()") 
+                    span 의사 추가
+                .tree-btn(ng-click="onDeleteNode()") 
+                    span 삭제
+                //- .tree-btn(ng-click="onDeleteDepartmentNode()") 
+                //-     span -
+                .tree-btn(ng-click="onUp()") 
+                    span up
+                    //- i.fa.fa-sort-asc.iasc(aria-hidden="true")
+                .tree-btn(ng-click="onDown()") 
+                    span down
+                    //- i.fa.fa-sort-desc.idesc(aria-hidden="true")
+                
+        .rigt-case
+            #editor-content
+                .editor-title
+                    span(
+                        data-ng-bind="unselectedDep" 
+                        ng-if="selectedDepartment==undefined && selectedDoctor==undefined")
+                    span(ng-if="selectedDepartment!=undefined") 부서 편집
+                    span(ng-if="selectedDoctor!=undefined") 의사 편집
+                
+                //- 부서 편집
+                .editor-case(ng-if="selectedDepartment!=undefined")
+                    form(
+                        id="editor-form"
+                        name="questionForm" 
+                        method="post" 
+                        enctype="multipart/form-data" 
+                        action="/backoffice/api/department/save" 
+                        target="fakeframe")
+                        input(
+                            type="hidden" 
+                            name="data_type" 
+                            value="department")
+                        input(
+                            type="hidden" 
+                            name="data_id" 
+                            ng-value="selectedDepartment.data_id")
+                        input(
+                            type="hidden" 
+                            name="check_flag" 
+                            ng-value="selectedDepartment.state.checked")
+                        .editor-item
+                            .editor-item-title
+                                span 한글 이름
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="title_korean" 
+                                    placeholder="한글 이름 입력" 
+                                    maxlength="7" 
+                                    ng-model="selectedDepartment.title_korean"
+                                    ng-value="selectedDepartment.title_korean")
+                        .editor-item
+                            .editor-item-title
+                                span 영어 이름
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="type" 
+                                    placeholder="영어 이름 입력" 
+                                    ng-model="selectedDepartment.type"
+                                    ng-value="selectedDepartment.type")
+                        .editor-item-image
+                            .editor-item
+                                .editor-item-title
+                                    span 이미지 설정
+                                .editor-item-input
+                                    input(
+                                        ng-click="imgEvSet()"
+                                        type="file" 
+                                        id="image_uploads" 
+                                        name="IMG_FILE" 
+                                        accept=".jpg, .jpeg, .png" 
+                                        multiple)
+                            .editor-item-additional-desc
+                                span *Size : 최대 100x100px 이하 JPG, JPEG, PNG, SVG
+                            .photo-state
+                                .crt-photo
+                                    div
+                                        span(ng-if="!selectedDepartment.img_flag") 이미지 설정 안됨
+                                        span(ng-if="selectedDepartment.img_flag") 기존 이미지
+                                    div
+                                        img(
+                                            id="crt-dep-photo-img"
+                                            ng-if="selectedDepartment.img_flag"
+                                            alt="" 
+                                            ng-src="{{rest_img+'?'+'type=department&id='+selectedDepartment.data_id}}")
+                                .preview-photo
+                                    div
+                                        span() 선택된 이미지
+                                    div
+                                        .preview
+                        .editor-item
+                            .editor-item-title
+                                span 층수
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="location" 
+                                    placeholder="부서 위치" 
+                                    ng-model="selectedDepartment.location"
+                                    ng-value="selectedDepartment.location")    
+                        .editor-item
+                            .editor-item-title
+                                span 부서 설명
+                            .editor-item-input-desc
+                                textarea(
+                                    name="description" 
+                                    maxlength="230" 
+                                    placeholder="부서 설명 입력" 
+                                    ng-model="selectedDepartment.description"
+                                    ng-value="selectedDepartment.description")
+                        .editor-item-last
+                            .editor-item-last-case
+                                .editor-item-protec-btn
+                                    span 편집 보호 설정
+                                    input(
+                                        id="default_opt_check"
+                                        type="checkbox" 
+                                        ng-click="onClickDefaultCheck($event)"
+                                        ng-model="selectedDepartment.default_opt"
+                                        ng-true-value="1"
+                                        name="default_opt")
+                                .editor-item-title(
+                                    id="editor-item-submit" 
+                                    ng-click="onSaveDepartment()")
+                                    span 저장
+                    iframe(name="fakeframe" style="display:none;")
+
+                //- 의사 편집
+                .editor-case(ng-if="selectedDoctor!=undefined")
+                    form(
+                        id="editor-form"
+                        name="questionForm" 
+                        method="post" 
+                        enctype="multipart/form-data" 
+                        action="/backoffice/api/doctor/save" 
+                        target="fakeframe")
+                        input(
+                            type="hidden" 
+                            name="data_type" 
+                            value="doctor")
+                        input(
+                            type="hidden" 
+                            name="data_id" 
+                            ng-value="selectedDoctor.data_id")
+                        input(
+                            type="hidden" 
+                            name="department_id" 
+                            ng-value="selectedDoctor.department_id")
+                        input(
+                            type="hidden" 
+                            name="check_flag" 
+                            ng-value="selectedDoctor.state.checked")
+                        .editor-item
+                            .editor-item-title
+                                span 의사명
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="name" 
+                                    placeholder="이름 입력" 
+                                    maxlength="7"
+                                    ng-model="selectedDoctor.name"
+                                    ng-value="selectedDoctor.name")
+                        .editor-item-image
+                            .editor-item
+                                .editor-item-title
+                                    span 이미지 설정
+                                .editor-item-input
+                                    input(
+                                        ng-click="imgEvSet()"
+                                        type="file" 
+                                        id="image_uploads" 
+                                        name="IMG_FILE" 
+                                        accept=".jpg, .jpeg, .png" 
+                                        multiple)
+                            .editor-item-additional-desc
+                                span *Size : 최대 100x100px 이하 JPG, JPEG, PNG
+                            .photo-state
+                                .crt-photo
+                                    div
+                                        span(ng-if="!selectedDoctor.img_flag") 이미지 설정 안됨
+                                        span(ng-if="selectedDoctor.img_flag") 기존 이미지
+                                    div
+                                        img(
+                                            id="crt-doc-photo-img"
+                                            ng-if="selectedDoctor.img_flag"
+                                            alt="" 
+                                            ng-src="{{rest_img+'?'+'type=doctor&id='+selectedDoctor.data_id}}")
+                                .preview-photo
+                                    div
+                                        span() 선택된 이미지
+                                    div
+                                        .preview
+                        .editor-item
+                            .editor-item-title
+                                span 직위
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="title" 
+                                    placeholder="직위 입력"
+                                    ng-model="selectedDoctor.title"
+                                    ng-value="selectedDoctor.title")
+                        .editor-item
+                            .editor-item-title
+                                span 주 진료분야
+                            .editor-item-input
+                                input(
+                                    type="text" 
+                                    name="major" 
+                                    placeholder="진료 분야 입력"
+                                    ng-model="selectedDoctor.major"
+                                    ng-value="selectedDoctor.major")
+                        .editor-item
+                            .editor-item-title
+                                span 학력
+                            .editor-item-input
+                                .editor-item-input-case(
+                                    ng-repeat="item in selectedDoctor.education")
+                                    input(
+                                        ng-value="item.value"
+                                        style="margin-bottom:5px;"
+                                        type="text" 
+                                        name="education[]" 
+                                        placeholder="학력 입력" 
+                                        maxlength="200")
+                                    .editor-item-input-btn(
+                                        ng-if="$index==0"
+                                        ng-click="addInput($event, 'education')"
+                                        )
+                                        span +
+                                    .editor-item-input-btn(
+                                        ng-if="$index==selectedDoctor.education.length-1&&$index!=0"
+                                        ng-click="deleteInput($event, 'education')")
+                                        span -
+                        .editor-item
+                            .editor-item-title
+                                span 경력
+                            .editor-item-input
+                                .editor-item-input-case(
+                                    ng-repeat="item in selectedDoctor.career")
+                                    input(
+                                        ng-value="item.value"
+                                        style="margin-bottom:5px;"
+                                        type="text" 
+                                        name="career[]" 
+                                        placeholder="경력 입력" 
+                                        maxlength="200")
+                                    .editor-item-input-btn(
+                                        ng-if="$index==0"
+                                        ng-click="addInput($event, 'career')"
+                                        )
+                                        span +
+                                    .editor-item-input-btn(
+                                        ng-if="$index==selectedDoctor.career.length-1&&$index!=0"
+                                        ng-click="deleteInput($event, 'career')")
+                                        span -
+                        .editor-item
+                            .editor-item-title
+                                span 학회
+                            .editor-item-input
+                                .editor-item-input-case(
+                                    ng-repeat="item in selectedDoctor.academy")
+                                    input(
+                                        ng-value="item.value"
+                                        style="margin-bottom:5px;"
+                                        type="text" 
+                                        name="academy[]" 
+                                        placeholder="학회 입력" 
+                                        maxlength="200")
+                                    .editor-item-input-btn(
+                                        ng-if="$index==0"
+                                        ng-click="addInput($event, 'academy')"
+                                        )
+                                        span +
+                                    .editor-item-input-btn(
+                                        ng-if="$index==selectedDoctor.academy.length-1&&$index!=0"
+                                        ng-click="deleteInput($event, 'academy')")
+                                        span -
+                        .editor-item-last
+                            .editor-item-last-case
+                                .editor-item-title(
+                                    id="editor-item-submit"
+                                    ng-click="onSaveDoctor()")
+                                    span 저장
+                    iframe(name="fakeframe" style="display:none;")
+
+block scriptadding
+    script(type="text/javascript", src="/static/libs/bootstrap-treeview-1.2.0/testdata.js")
+    script(type="text/javascript", src="/static/libs/bootstrap-treeview-1.2.0/bootstrap-treeview.min.js")
+    script(type="text/javascript", src="/static/libs/bootstrap-treeview-1.2.0/treeview.js")
+    script(type="text/javascript", src="/static/js/backoffice.js")

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        title 로봇 관제 시스템
+
+
+        //- bootstrap stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/3.4.1/css/bootstrap.min.css")
+        //- bootstrap font-awesome stylesheet
+        link(rel="stylesheet" href="/static/libs/font.awesome.4.6.0/Content/Content/font-awesome.min.css")
+        //- bootstrap-essentials stylesheet
+        link(rel="stylesheet" href="/static/libs/bootstrap/essentials/css/bootstrap-essentials.css")
+        //- animate stylesheet
+        link(rel="stylesheet" href="/static/libs/animatecss/3.5.1/animate.min.css")
+        //- layout stylesheet        
+        link(rel="stylesheet", href="/static/css/header.css")
+        link(rel="stylesheet", href="/static/css/login.css")
+
+        
+    body
+        .bg-case
+            .login-case
+                .login-case-top
+                    .main-logo-case
+                        img(src="/static/imgs/icons/ropti-logo.svg" class="ropti_logo")
+                .login-case-btm
+                    form#login_form(role="form", action="", method="post")
+                        fieldset
+                            .login-case-btm-title
+                                span 로그인
+                            .login-case-btm-id
+                                span 아이디
+                            .login-case-btm-id-input
+                                input(
+                                    placeholder=""
+                                    name="username"
+                                    type="text"
+                                    autofocus=""
+                                    required="")
+                            .login-case-btm-pw
+                                span 비밀번호
+                            .login-case-btm-pw-input
+                                input(
+                                    placeholder="" 
+                                    name="password"
+                                    type="password"
+                                    value=""
+                                    required="")
+                            .login-case-btm-btn
+                                -if(flashMessage)
+                                    div.login-flash-msg(role="alert") #{flashMessage}
+                                input.login-case-submit-btn.btn.btn-lg.btn-success.btn-block(value="로그인", type="submit")
+                                //- a.btn.btn-lg.btn-primary.btn-block(href="/accounts/join") 계정생성
+
+    //- common frameworks
+    //- jquery
+    script(type="text/javascript", src="/static/libs/jquery/jquery_2.1.1.js")
+    //- bootstrap js
+    script(type="text/javascript", src="/static/libs/bootstrap/3.4.1/js/bootstrap.min.js")
+
+    script(type="text/javascript", src="/static/js/login.js")
+

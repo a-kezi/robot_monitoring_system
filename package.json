@@ -1,0 +1,49 @@
+{
+  "name": "robot_web_service",
+  "version": "1.0.0",
+  "description": "robot web service",
+  "main": "main.js",
+  "scripts": {
+    "test": "nodemon main.js --config ./nodemon.json"
+  },
+  "keywords": [
+    "dashboard"
+  ],
+  "author": "kezi",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.9.6",
+    "angular-ui-bootstrap": "^2.5.6",
+    "bull": "^3.16.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "csv": "^5.3.2",
+    "csv-parser": "^2.3.3",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.0",
+    "express-zip": "^3.0.0",
+    "helmet": "^3.23.3",
+    "js-base64": "^3.4.5",
+    "js-yaml": "^3.13.1",
+    "mkdirp": "^1.0.4",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "mysql2": "^2.1.0",
+    "nats": "^1.4.9",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "redis": "^3.0.2",
+    "request": "^2.88.2",
+    "rosnodejs": "^3.0.2",
+    "sequelize": "^4.42.0",
+    "sharp": "^0.25.4",
+    "socket.io": "^2.3.0",
+    "uuid": "^8.1.0"
+  }
+}

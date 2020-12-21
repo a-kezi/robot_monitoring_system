@@ -1,0 +1,112 @@
+<style>
+    .mapview-component-title{
+        display: flex;
+        top:0;
+        width:100%;
+        height:44px;
+        background-color: var(--grey-0);
+        border-bottom:solid var(--grey-4) 1px;
+        padding-left: var(--spacing-m);
+        padding-right: var(--spacing-m);
+    }
+    .mapview-component-title>span{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        margin-top:auto;
+        margin-bottom: auto;
+    }
+    mv-controller{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index: 6;
+    }
+    mv-map{
+        position:absolute;
+        
+    }
+    mv-robot{
+        position:absolute;
+        z-index: 4;
+    } 
+    mv-marker{
+        position:absolute;
+        z-index: 4;
+    }
+    mv-line{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index: 2;
+    }
+    mv-point{
+        position:absolute;
+        z-index: 1;
+    } 
+    mv-info-box{
+        position:absolute;
+        z-index: 5;
+    }
+    mv-menu-box{
+        position:absolute;
+        z-index: 5;
+    }
+
+    
+    .zone-obj{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height:100%;
+        user-select: none;
+    }
+    
+    .mapview-case{
+        overflow:hidden;        
+        position:relative;
+        width:100%;
+        height:100%;
+        background-color: #343a40;
+    }
+    
+    
+</style>
+<div class="content-wrapper">
+    <div class="mapview-component-title">
+        <span >Map View</span>
+    </div>
+    <div class="mapview-case"> 
+        <mv-controller></mv-controller>
+        <mv-robot ></mv-robot>
+        <mv-marker></mv-marker>
+        <mv-point></mv-point>
+        <mv-line></mv-line>
+
+        <!-- 
+        <mv-line></mv-line>
+        <mv-info-box></mv-info-box>
+        <mv-menu-box></mv-menu-box> -->
+        
+        <mv-map ></mv-map>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

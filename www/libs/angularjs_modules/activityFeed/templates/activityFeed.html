@@ -1,0 +1,889 @@
+<style>
+    .feed-case{
+        /* overflow:hidden;         */
+        position:relative;
+        height:100%;
+        width:100%;
+
+        background-color: var(--grey-0);        
+    }
+    /* query radio btns*/
+    .query-case{
+        height:44px;
+        width:100%;
+        background-color: var(--grey-1);
+        display: flex;
+    }
+    .btn-group{
+        height:100%;
+        width:100%;
+    }
+    .btn-group .btn{
+        border:none;
+    }
+    .btn-group .important-filter{
+        width:10%;
+    }
+    .btn-group .issue-filter{
+        width:30%;
+    }
+    .btn-group .unchecked-filter{
+        width:30%;
+    }
+    .btn-group .all-filter{
+        width:30%;
+    }
+    .btn-custom{
+        background-color: var(--grey-1);
+        color: var(--grey-7);
+        height:100%;
+        margin:0px !important;
+        border-radius:0px !important;
+        color: var(--grey-6);
+    }
+    .btn-custom.active{
+        color: var(--ui-red);
+        background-color: var(--grey-0);
+        border-bottom:solid 3px var(--ui-red);
+        box-shadow: none;
+    }
+    .btn-custom:hover{
+        color: var(--grey-7);
+    }
+    .btn-custom.active.focus{
+        color: var(--ui-red);
+        background-color: var(--grey-0);
+        border-bottom:solid 3px var(--ui-red);
+    }
+    .btn-custom:focus{
+        color: var(--ui-red);
+        background-color: var(--grey-0);
+        border-bottom:solid 3px var(--ui-red);
+    }
+    .btn-group label {
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  
+        outline: none !important;
+        padding:0;
+        display:flex;
+    } 
+    .feed-case>.query-case img {
+        margin:auto;
+    } 
+    .feed-case>.query-case span {
+        margin:auto;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+    } 
+
+
+    .activity-feed-body{
+        height:703px;
+        overflow-y: scroll;
+        background-color: var(--grey-0);
+    }
+
+    .activity-feed-body > ul{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+    .activity-feed-body > ul > li{
+        height: 100%;
+        /* padding-left: var(--spacing-xl); */
+        position: relative;
+        overflow: hidden;
+    }
+    .li-wrapper{
+        width:100%;
+        height:100%;
+    }
+    .filter-shadow{
+        position:absolute;
+        top:41;
+        width:100%;
+        height: 16px;
+        background-image: linear-gradient(to bottom, rgba(107, 128, 152, 0.2) 2%, rgba(107, 128, 152, 0));
+        z-index: 99;
+
+    }
+
+
+    .li-wrapper>.activity-feed-raw>div{
+        height:100px;
+    }
+    .li-wrapper>.activity-feed-raw{
+        display: flex;
+    }
+    .li-wrapper>.activity-feed-raw .feed-time{
+        width:19%;
+    }
+    .li-wrapper>.activity-feed-raw .feed-content{
+        width:81%;
+    }
+    .activity-feed-raw-checked-color{
+        background-color: var(--grey-2);
+    }
+    .activity-feed-raw-unchecked-color{
+        background-color: var(--grey-0);
+    }
+    .selected-feed-color{
+        background-color: rgba(71, 122, 237, 0.1) !important;
+    }
+    
+    .feed-time{
+        height:100%;
+        padding-top:14px;
+        padding-right:14px;
+    }
+    .feed-time .feed-content-checked{
+        display: flex;
+        width:100%;
+    }
+    .feed-time .feed-content-checked img{
+        margin-left:auto;
+    }
+    .feed-time-time{
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-5);
+    }
+    .feed-time-date{
+        font-family: SpoqaHanSans;
+        font-size: 14px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--grey-5);
+
+    }
+
+    
+    .exclamation-mark{
+        position:absolute;
+        left: 0px;
+        top:50px;
+        z-index:95;
+    }
+    .exclamation-mark>img{
+        position:absolute;
+        left:-10px;
+        top:-10px;
+        width: 20px;
+        height: 20px;
+    }
+    .feed-dot-mark{
+        position:absolute;
+        left:-4px;
+        top:46px;
+        width: 8px;
+        height: 8px;
+        border-radius:4px;
+        background-color: var(--grey-5);
+        z-index:90;
+    }
+    .exclamation-mark>span{
+        margin:auto;
+        color: var(--grey-1);
+
+        font-family: SpoqaHanSans;
+        font-size: 15px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;
+    }
+
+
+
+    .feed-content{
+        position:relative;
+        padding-left:25px;
+        cursor:pointer;
+        border-left: solid 2px var(--grey-3);
+        border-bottom: solid 1px var(--grey-3);
+
+        height:100%;
+        /* background-color: var(--grey-0); */
+        position: relative;
+        display: flex;
+    }
+    
+    .feed-content-result{
+        width:30%;
+        /* border:solid green 1px; */
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        text-align: right;
+        color: var(--ui-red);
+
+
+        padding: 2.5%;
+        
+
+    }
+    .feed-content-result-case{
+        height: 100%;
+        border-radius: 4px;
+        background-color: var(--grey-0);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+
+    .feed-content-info{
+        width:70%;
+        position: relative;
+    }
+    .feed-content-type{
+        height:50%;
+        padding-top:25px;
+
+    }
+    .checked-feed{
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-6);
+
+        
+    }
+    .unchecked-feed{
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.4;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        
+    }
+    .feed-content-textinfo{
+        height:50%;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-5);
+    }
+    .feed-content-checked{
+        width:10%;
+    }
+    .feed-detail{
+        position: absolute;
+        width:400px;
+        height:100%;
+        background-color: var(--grey-0);
+        z-index: -1;
+        transition: left 0.5s ease-out;
+        border-right:solid var(--grey-3) 1px;
+        border-left:solid var(--grey-3) 1px;
+    }
+    /* .feed-detail-shadow{
+        position: absolute;
+        left:-10px;
+        width:10px;
+        height:100%;
+        background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    } */
+    .feed-detail-title{
+        display: flex;
+        top:0;
+        width:100%;
+        height:44px;
+        background-color: var(--grey-0);
+        border-bottom:solid var(--grey-4) 1px;
+    }
+    .detail-close-btn{
+        width:10%;
+        cursor:pointer;
+        font-family: SpoqaHanSans;
+        font-size: 24px;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--secondary);
+        display: flex;
+        margin-left:auto;
+    }
+    .detail-close-btn>i{
+        margin:auto;
+    }
+
+    
+    .feed-detail-title-text{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        display: flex;
+        padding-left:var(--spacing-xs)
+    }
+    .feed-detail-title-text>span{
+        margin:auto;
+    }
+    
+    .detail-open{
+        left:-400px;
+    }
+    .detail-close{
+        left:0;
+    }
+    .feed-detail-body{
+        padding:0px 24px;
+        height:690px;
+        overflow-y: auto;
+        background-color: var(--grey-0);
+    }
+    .feed-detail-check{
+        height:44px;
+        background-color: var(--grey-0);
+        border-bottom: solid var(--grey-3) 1px;
+        display: flex;
+    }
+    .feed-detail-important-icon{
+        padding-left: var(--spacing-xl);
+        display: flex;
+        cursor: pointer;
+    }
+    .feed-detail-important-icon>img{
+        width:24px;
+        height:24px;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .feed-detail-important-icon>span{
+        margin-top:auto;
+        margin-bottom:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+
+    .feed-detail-check-icon{
+        padding-left: var(--spacing-xl);
+        display: flex;
+    }
+    .feed-detail-check-icon>img{
+        width:24px;
+        height:24px;
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    .feed-detail-subtitle{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        margin-bottom: var(--spacing-xxs);
+    }
+    .feed-detail-data{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+        border-bottom: solid var(--grey-3) 1px;
+    }
+    .feed-detail-data_no_bottom_line{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+
+    .feed-detail-check-icon>span{
+        margin-top:auto;
+        margin-bottom:auto;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+    }
+
+    .feed-detail-type{
+        padding-top: 16px;
+        height:53px;
+        
+        font-family: SpoqaHanSans;
+        font-size: 20px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-7);
+
+    }
+    .feed-detail-date{
+        height:28px;
+        padding-top: 4px;
+
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+
+    }
+    .feed-detail-result{
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        padding-top: var(--spacing-s);
+        padding-bottom: var(--spacing-xl);
+        width:100%;
+    }
+    .feed-detail-result-txtcase{
+        width:100%;
+        font-size: 40px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: var(--ui-red);
+    }
+    .feed-detail-result-imgcase{
+        width:100%;
+    }
+    .feed-detail-result-imgcase>img{
+        height:200px;
+        margin:auto;
+        cursor:pointer;
+    }
+    .feed-detail-time{
+        margin-bottom: var(--spacing-m);
+    }
+    .feed-detail-location{
+        /* height:180px; */
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        
+    }
+    .feed-detail-robotname{
+        height:52px;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .feed-detail-robottype{
+        height:52px;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+        
+
+    }
+    .reportbtn{
+        width:100%;
+    }
+    
+    .feed-detail-map{
+        position: relative;
+        width:100%;
+        height:200px;
+        margin-bottom: 10px;
+        border: solid var(--grey-3) 1px;
+    }
+    .component-title{
+        display:flex;
+    }
+    .component-title>span{
+        margin-top:auto;
+        margin-bottom:auto;
+    }
+    /*service selector*/
+    .service-selector-container{
+        width: 240px;
+        height: 32px;
+        border-radius: 2px;
+        border: solid 1px var(--grey-4);
+        background-color: var(--grey-0);
+        color : var(--secondary);
+        display: flex;
+        margin-top:auto;
+        margin-bottom:auto;
+        margin-left:auto;
+        padding: 4px 16px 4px 16px;
+    }
+    .service-selector-container > ul{
+        width:100%;
+        font-family: SpoqaHanSans;
+        font-size: 16px;
+        font-weight: bold;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: var(--grey-6);
+    }
+    .service-selector-container>ul>.dropdown{
+        width:100%;
+    }
+    .service-selector-container>ul>.dropdown>div{
+        display: flex;
+        width:100%;
+    }
+    .service-select-btn{
+        align-self: end;
+        margin-left:auto;
+    }
+    .service-selector-container .navbar-nav .dropdown-menu{
+        top:111%;
+        left:-16px;
+        width:234px;
+        background-color: var(--grey-7);
+        background-image:linear-gradient(to bottom, rgba(0, 0, 0, 0.2),rgba(73, 80, 87, 1) 9px)
+    }
+    .service-selector-container .navbar-nav .dropdown-menu a{
+        background-color: var(--grey-7);
+    }
+    .service-select-btn .caret {
+        margin-left:4px;
+        margin-bottom:4px;
+        border-top:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-5);
+        border-bottom-color: var(--grey-5);
+    }
+
+    .service-selector-container:hover .caret{
+        border-top-color: var(--grey-7);
+        border-bottom-color: var(--grey-7);
+    }
+    .service-selector-container:focus .caret {
+        margin-left:4px;
+        border-top:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-5);
+        border-bottom-color: var(--grey-5);
+    }
+    .service-selector-container .open .caret, 
+    .service-selector-container .open:focus .caret{
+        margin-left:4px;
+        border-top:0px dashed;
+        border-bottom:8px dashed;
+        border-right:6px solid transparent;
+        border-left:6px solid transparent;
+        border-top-color: var(--grey-7);
+        border-bottom-color: var(--grey-7);
+    }
+
+</style>
+
+
+<div class="content-wrapper">
+    <div 
+        ng-class="{ 'detail-open': isDetailOpen, 'detail-close': !isDetailOpen}"
+        class="feed-detail">
+        <div class="feed-detail-title">
+            
+            <div class="feed-detail-title-text">
+                <span>Feed Detail</span>
+            </div>
+            <div class="detail-close-btn" ng-click="closeFeedDetail()">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="feed-detail-check">
+            <div class="feed-detail-important-icon" ng-click="onClickDetailImportantBtn($event)">
+                <img src="/static/imgs/icons/icon-24-star-on.svg" alt="" ng-if="selectedFeed.important==true">
+                <img src="/static/imgs/icons/star-on.svg" alt="" ng-if="selectedFeed.important!=true">
+                <span>중요</span>
+            </div>
+            <div class="feed-detail-check-icon">
+                <img src="/static/imgs/icons/elements-check-box-off.svg" width="24px" alt="" ng-if="selectedFeed.checked!=true">
+                <img src="/static/imgs/icons/elements-check-box-on.svg" width="24px" alt="" ng-if="selectedFeed.checked==true">
+                <span>읽음</span>
+            </div>
+        </div>
+
+        <div class="feed-detail-body">
+
+            <div class="feed-detail-type">
+                <span data-ng-bind="getServiceDisplayName(selectedFeed.type)"></span>
+            </div>
+
+            <div class="feed-detail-result">
+                <div class="feed-detail-result-txtcase">
+                    <span data-ng-bind="selectedFeed.result.data" ng-if="selectedFeed.result.data!=false"></span>
+                </div>
+                <div class="feed-detail-result-imgcase">
+                    <img ng-if="checkResultImg(selectedFeed.result.type)" 
+                    ng-src="{{origin_img_url}}?id={{selectedFeed.msg_id}}&timestamp={{selectedFeed.timestamp}}&type={{selectedFeed.type}}"
+                    ng-click="onPopup($event)">
+                </div>
+                
+                
+            </div>
+
+            <div class="feed-detail-time">
+                <div class="feed-detail-subtitle">발생 시간</div>
+
+                <div class="feed-detail-data" data-ng-bind="getWholeDateFormat(selectedFeed.timestamp)"></div>
+            </div>
+
+            <div class="feed-detail-location">
+                <div class="feed-detail-subtitle">발생 위치</div>
+                <div class="data_no_bottom_line" data-ng-bind="selectedFeed.zone"></div>
+                <div class="feed-detail-map">
+                    <map-view class="activity-feed-static-mv" mode="static" height="200px" title="false" btnzoom="false"></map-view>
+                </div>
+            </div>
+
+            <div class="feed-detail-robottype">
+                <div class="feed-detail-subtitle">로봇 타입</div>
+                <div class="feed-detail-data" data-ng-bind="getRobotType(selectedFeed.robot_id)"></div>
+            </div>
+            
+            <div class="feed-detail-robotname">
+                <div class="feed-detail-subtitle">로봇 이름</div>
+                <div class="feed-detail-data" data-ng-bind="getRobotName(selectedFeed.robot_id)"></div>
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <div class="component-title">
+        <span >Feed</span>
+        
+        <div class="service-selector-container">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <div href="#" 
+                    class="" 
+                    data-toggle="dropdown" 
+                    role="button" 
+                    aria-haspopup="true" 
+                    aria-expanded="false">
+                        <span data-ng-bind="selectedServiceName"></span>
+                        <div class="service-select-btn">
+                            <span class="caret"></span>
+                        </div>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li ng-click="chooseAllService()">
+                            <a href="">
+                                <span>All</span>
+                            </a>
+                        </li>
+                        <li ng-repeat="item in $root.dataShare.servicelist" 
+                        ng-click="chooseService($index)">
+                            <a href="">
+                                <span data-ng-bind="item.display_name"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>                                    
+    </div>
+    <!-- <div class="component-body-l"> -->
+    <div class="activity-feed-content">        
+        <div class="feed-case"  id="feed-area" >
+            
+            <div class="query-case">
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="important-filter btn  btn-custom" ng-click="filterToImportant()">
+                        <input type="radio" name="options" id="option1" autocomplete="off" checked >
+                            <img src="/static/imgs/icons/icon-24-star-on.svg" width="24px" alt="" ng-if="filterState==2">
+                            <img src="/static/imgs/icons/star-on.svg" width="24px" alt="" ng-if="filterState!=2">
+                        </input>
+                    </label>
+
+                    <label class="issue-filter btn  btn-custom" ng-click="filterToIssue()">
+                        <input type="radio" name="options" id="option2" autocomplete="off" > 
+                            <span>이슈</span>
+                        </input>
+                    </label>
+                    
+                    <label class="unchecked-filter btn  btn-custom active" ng-click="filterToUnchecked()">
+                        <input type="radio" name="options" id="option3" autocomplete="off">
+                            <span>안읽은 이슈</span>
+                        </input>
+                    </label>
+                    
+                    <label class="all-filter btn  btn-custom" ng-click="filterToAll()">
+                        <input type="radio" name="options" id="option3" autocomplete="off"> 
+                            <span>전체</span>
+                        </input>
+                    </label>
+                </div>
+            </div>
+            <div class="filter-shadow"></div>
+            <div id="scrollPage" class="activity-feed-body ">
+                <ul class="">
+                    
+                    <!-- 반복구간 -->
+                    <li ng-repeat="item in feed" >
+                        <div class="li-wrapper">
+                            
+                            <div 
+                                class="activity-feed-raw"
+                                ng-class="{ 'activity-feed-raw-checked-color': item.checked, 'activity-feed-raw-unchecked-color': !item.checked}">
+                                
+                                <div class="feed-time ">
+                                    <div class="feed-time-date">
+                                        <span data-ng-bind="getFormatDate(item.timestamp)"></span>
+                                    </div>
+                                    <div class="feed-time-time">
+                                        <span data-ng-bind="getFormatTime(item.timestamp)"></span>
+                                    </div>
+                                    <div class="feed-content-checked" >
+                                        <img ng-click="onClickFeedImportantBtn($index, $event)" 
+                                            src="/static/imgs/icons/icon-24-star-on.svg" 
+                                            width="24px" 
+                                            alt="" 
+                                            ng-if="item.important==true">
+                                        <img ng-click="onClickFeedImportantBtn($index, $event)" 
+                                            src="/static/imgs/icons/star-off.png" 
+                                            width="24px" 
+                                            alt="" 
+                                            ng-if="item.important==false">
+                                    </div>
+                                </div>
+                                <div class="feed-content" ng-click="selectFeed($index, $event)">
+                                    <div class="exclamation-mark" ng-if="item.error==true">
+                                        <img src="/static/imgs/icons/element-lamp-issue.svg" ng-if="item.checked==false">
+                                        <img src="/static/imgs/icons/elements-lamp.svg" ng-if="item.checked==true">
+                                    </div>
+                                    <div class="feed-dot-mark">
+                                    </div>
+
+                                    <div class="feed-content-info" >
+                                        <div class="feed-content-type">
+                                            <span ng-if="item.checked==true" class="checked-feed" data-ng-bind="getServiceDisplayName(item.type)"></span>
+                                            <span ng-if="item.checked!=true" class="unchecked-feed" data-ng-bind="getServiceDisplayName(item.type)"></span>
+                                        </div>
+                                        <div class="feed-content-textinfo">
+                                            <span data-ng-bind="item.robot_id"></span>
+                                            <!-- <span> - (</span>
+                                            <span data-ng-bind="item.location.pose.position.x"></span>
+                                            <span>,</span>
+                                            <span data-ng-bind="item.location.pose.position.y"></span>
+                                            <span>)</span> -->
+                                            <!-- <span data-ng-bind="item.thumnail"></span> -->
+                                        </div>
+                                    </div>
+                                    <div class="feed-content-result" ng-click="selectFeed($index, $event)">
+                                        <div class="feed-content-result-case">
+                                            <span ng-if="!checkResultImg(item.result.type)" data-ng-bind="item.result.data"></span>
+                                            <!-- <img ng-if="checkResultImg(item.result.type)" 
+                                            ng-src="{{thum_img_url}}?id={{item.msg_id}}&timestamp={{item.timestamp}}&type={{item.type}}" 
+                                            width="100%"> -->
+                                            <img ng-if="checkResultImg(item.result.type)" 
+                                            ng-src="{{origin_img_url}}?id={{item.msg_id}}&timestamp={{item.timestamp}}&type={{item.type}}" 
+                                            alt=""
+                                            width="100%">
+                                            <!-- <img ng-if="checkResultImg(item.result.type)" ng-src="data:image/jpeg;base64,{{item.result.image}}" width="100%"> -->
+                                        </div>
+                                    </div>
+                                </div>
+        
+                            </div>
+                            
+                        </div>
+                    </li>
+                    <!-- 반복구간  종료-->
+        
+                    
+                    
+        
+        
+        
+                </ul>
+                
+                
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+

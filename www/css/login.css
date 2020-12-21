@@ -1,0 +1,161 @@
+.bg-case{
+    background-color: var(--grey-9);
+    height:100%;
+    width:100%;
+    display: flex;
+}
+.login-case{
+    margin-top:5%;
+    margin-left:auto;
+    margin-right:auto;
+    height:652px;
+    width:400px;
+}
+.login-case-top{
+    height:200px;
+    width:400px;
+    display: flex;
+}
+.main-logo-case{
+    height:56px;
+    width:176px;
+    margin:auto;
+}
+.main-logo-case>img{
+    height:100%;
+    width:100%;
+}
+.login-case-btm{
+    height:452px;
+    width:400px;
+    padding: 0px 40px;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.3);
+    background-color: #ffffff;
+}
+.login-case-btm-title{
+    height:120px;
+    width:100%;
+    display: flex;
+
+    font-family: SpoqaHanSans;
+    font-size: 32px;
+    font-weight: bold;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.38;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.login-case-btm-title>span{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right:auto;
+}
+.login-case-btm-id{
+    height:32px;
+    margin-bottom: 8px;
+    width:100%;
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--grey-5);
+}
+.login-case-btm-id-input{
+    height:48px;
+    width:100%;
+    margin-bottom: 8px;
+    
+}
+.login-case-btm-id-input>input{
+    height:48px;
+    width:100%;
+    padding:0px 8px 0px 8px;
+    border-radius: 4px;
+    background-color: var(--grey-1);
+    border: none;
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.login-case-btm-id-input>input:focus{
+    outline:none;
+}
+.login-case-btm-pw{
+    height:32px;
+    margin-bottom: 8px;
+    width:100%;
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--grey-5);
+
+}
+.login-case-btm-pw-input{
+    height:48px;
+    width:100%;
+    margin-bottom: 8px;
+}
+.login-case-btm-pw-input>input{
+    height:48px;
+    width:100%;
+    padding:0px 8px 0px 8px;
+    border-radius: 4px;
+    background-color: var(--grey-1);
+    border: none;
+
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--grey-7);
+}
+.login-case-btm-pw-input>input:focus{
+    outline:none;
+}
+.login-case-btm-btn{
+    height:140px;
+    width:100%;
+    position: relative;
+    /* display: flex; */
+}
+.login-case-btm-btn>.login-case-submit-btn{
+    position: absolute;
+    bottom: 40px;
+    border-radius: 2px;
+    background-color: var(--grey-9);
+}
+.login-case-btm-btn>.login-case-submit-btn:hover{
+    background-color: var(--primary-2);
+}
+.login-case-btm-btn>.login-case-submit-btn:focus{
+    background-color: var(--grey-9)!important;
+    outline:none;
+}
+.login-flash-msg{
+    font-family: SpoqaHanSans;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: normal;
+    color: var(--ui-red);
+}
